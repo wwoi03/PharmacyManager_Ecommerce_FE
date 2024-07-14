@@ -1,0 +1,6 @@
+<form (ngSubmit)="signIn()" #signInForm="ngForm">
+    <input required [(ngModel)]="signInRequest.userName" name="userName" type="text" placeholder="Tên đăng nhập">
+    <input required [(ngModel)]="signInRequest.password" name="password" type="password" type="password"
+        placeholder="Mật khẩu">
+    <button>Đăng nhập</button>
+</form>
