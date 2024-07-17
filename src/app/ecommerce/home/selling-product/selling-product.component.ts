@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-selling-product',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './selling-product.component.scss'
 })
 export class SellingProductComponent {
+  constructor(private router: Router) { }
 
+  goToDetails(){
+    this.router.navigate(['/ecommerce/product/product-details']);
+  }
 }
