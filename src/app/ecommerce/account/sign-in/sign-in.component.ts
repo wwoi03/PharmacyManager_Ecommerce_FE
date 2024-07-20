@@ -6,7 +6,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 @Component({
   selector: 'ngx-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.scss',
+  styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
   signInRequest: SignInRequest = new SignInRequest();

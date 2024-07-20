@@ -5,7 +5,7 @@ import { ProductService } from '../../../services/product/product.service';
 @Component({
   selector: 'ngx-selling-product',
   templateUrl: './selling-product.component.html',
-  styleUrl: './selling-product.component.scss'
+  styleUrls: ['./selling-product.component.scss']
 })
 export class SellingProductComponent {
   itemProductResponses: ItemProductResponse[] = [];
