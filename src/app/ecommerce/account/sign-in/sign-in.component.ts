@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SignInRequest } from '../../../models/requests/account/sign-in-request';
 import { AccountService } from '../../../services/account/account.service';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'ngx-sign-in',
@@ -10,15 +11,16 @@ import { AccountService } from '../../../services/account/account.service';
 export class SignInComponent {
   signInRequest: SignInRequest = new SignInRequest();
 
-  constructor(private accountService: AccountService) {}
+  constructor(
+    private accountService: AccountService,
+    private authService: AuthService
+  ) {}
 
   signIn() {
     this.accountService.signIn(this.signInRequest).subscribe((res) => {
       if (res.code === 200) {
-        console.log(res);
-        // this.authService.setToken(res.obj.token);
-        // this.authService.setRoles(res.obj.roles);
-        // this.authService.setName(res.obj.name);
+        this.authService.setToken(res.obj.token);
+        this.authService.setName(res.obj.name);
         // this.toast.successToast("Thành Công", res.message);
 
         // setTimeout(() => {
