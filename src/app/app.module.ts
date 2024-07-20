@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ThemeModule } from './theme/theme.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
     ThemeModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    CookieService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
