@@ -2,6 +2,13 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<ngx-loading [show]="loading" [config]="{
+        primaryColour: primaryColour,
+        secondaryColour: secondaryColour,
+        tertiaryColour: primaryColour,
+        backdropBorderRadius: '3px'
+      }" [template]="loadingTemplate"></ngx-loading>
+
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">
@@ -40,4 +47,3 @@
         </div>
     </div>
 </section>
-
