@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { ResponseApi } from 'src/app/helpers/resposne-apis/response-api';
@@ -35,6 +35,23 @@ export class CartService {
   update(request: UpdateCartRequest): Observable<ResponseApi<string>> {
     return this.http
       .put<ResponseApi<string>>(this.apiUrl + "Update", request)
+      .pipe(
+        map((response: ResponseApi<string>) => {
+          if (response.isSuccessed) {
+            return response;
+          } else {
+            throw new Error('Login failed: ');
+          }
+        })
+      );
+  }
+
+  // Update Quantity
+  delete(cartId: string): Observable<ResponseApi<string>> {
+    const params = new HttpParams().set("cartId", cartId);
+
+    return this.http
+      .delete<ResponseApi<string>>(this.apiUrl + "Delete", { params })
       .pipe(
         map((response: ResponseApi<string>) => {
           if (response.isSuccessed) {

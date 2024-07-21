@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UpdateCartRequest } from 'src/app/models/requests/cart/update-cart-request';
 import { ItemCartResponse } from 'src/app/models/responses/cart/item-cart-response';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { FileService } from 'src/app/services/file/file.service';
 
 @Component({
   selector: 'ngx-cart-list',
@@ -11,9 +12,12 @@ import { CartService } from 'src/app/services/cart/cart.service';
 export class CartListComponent {
   // variables
   itemCartResponses: ItemCartResponse[] = [];
+  cartCheckOut: any[] = [];
+  subTotal: number = 0;
+  total: number = 0;
 
   // constructor
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, public fileService: FileService) {}
 
   // InitData
   ngOnInit() {
@@ -56,5 +60,36 @@ export class CartListComponent {
 
     console.log(updateCart);
     this.cartService.update(updateCart).subscribe();
+  }
+
+  // Delete Cart
+  onClickDeleteCart(item: ItemCartResponse) {
+    this.cartService.delete(item.cartId).subscribe(
+      (res) => {
+        if (res.code === 200) {
+          this.loadCart();
+        }
+      }
+    )
+  }
+
+  // chọn sản phẩm
+  onChangeCheckbox(event: any, item: ItemCartResponse) {
+    const checkbox = event.target as HTMLInputElement;
+    if (checkbox.checked) {
+      this.subTotal += (item.quantity * 150000);
+    } else {
+      this.subTotal -= (item.quantity * 150000);
+    }
+
+    this.calcTotal();
+  }
+
+  calcTotal() {
+    this.total = this.subTotal;
+  }
+
+  formatCurrency(amount: number): string {
+    return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
   }
 }
