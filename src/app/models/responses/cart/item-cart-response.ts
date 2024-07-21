@@ -1,5 +1,5 @@
 export class ItemCartResponse {
-    cardId: string = '';
+    cartId: string = '';
     productId: string = '';
     unitId: string = '';
     productName: string = '';

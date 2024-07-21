@@ -14,6 +14,10 @@
                     </tr>
                 </thead>
                 <tbody class="align-middle">
+                    <div style="width: 200px; padding: 20px" *ngIf="itemCartResponses.length == 0">
+                        Chưa có sản phẩm ...
+                    </div>
+
                     <tr *ngFor="let item of itemCartResponses">
                         <td class="align-middle">
                             <input type="checkbox" style="width: 20px; height: 20px;">
@@ -25,20 +29,23 @@
                             </span>
                         </td>
                         <td class="align-middle">
-                            150.000 VNĐ
-                            /
-                            {{ item.unitName }}
+                            150.000
+                            <p>
+                                VNĐ/{{ item.unitName }}
+                            </p>
                         </td>
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">
-                                <div class="input-group-btn">
+                                <div class="input-group-btn" (click)="onClickReduce(item)">
                                     <button class="btn btn-sm btn-primary btn-minus">
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
                                 <input type="text"
-                                    class="form-control form-control-sm bg-secondary border-0 text-center" [value]="item.quantity">
-                                <div class="input-group-btn">
+                                    class="form-control form-control-sm bg-secondary border-0 text-center"
+                                    [value]="item.quantity"
+                                    (input)="onChangeQuantity($event, item)">
+                                <div class="input-group-btn" (click)="onClickIncrease(item)">
                                     <button class="btn btn-sm btn-primary btn-plus">
                                         <i class="fa fa-plus"></i>
                                     </button>

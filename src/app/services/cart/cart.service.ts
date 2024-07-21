@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { ResponseApi } from 'src/app/helpers/resposne-apis/response-api';
+import { UpdateCartRequest } from 'src/app/models/requests/cart/update-cart-request';
 import { ItemCartResponse } from 'src/app/models/responses/cart/item-cart-response';
 
 @Injectable({
@@ -15,12 +16,27 @@ export class CartService {
     private http: HttpClient,
   ) { }
 
-  // Sign In
+  // get Cart
   getCart(): Observable<ResponseApi<ItemCartResponse[]>> {
     return this.http
       .get<ResponseApi<ItemCartResponse[]>>(this.apiUrl + "GetCart")
       .pipe(
         map((response: ResponseApi<ItemCartResponse[]>) => {
+          if (response.isSuccessed) {
+            return response;
+          } else {
+            throw new Error('Login failed: ');
+          }
+        })
+      );
+  }
+
+  // Update Quantity
+  update(request: UpdateCartRequest): Observable<ResponseApi<string>> {
+    return this.http
+      .put<ResponseApi<string>>(this.apiUrl + "Update", request)
+      .pipe(
+        map((response: ResponseApi<string>) => {
           if (response.isSuccessed) {
             return response;
           } else {
