@@ -12,7 +12,6 @@
 </div>
 <!-- Breadcrumb End -->
 
-
 <!-- Checkout Start -->
 <div class="container-fluid">
     <div class="row px-xl-5">
@@ -116,22 +115,25 @@
                 </h5>
                 <div class="bg-light p-30">
                     <div class="form-group">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                            <label class="custom-control-label" for="paypal">Thanh toán tiền mặt</label>
+                        <div class="custom-payment">
+                            <input type="radio" checked name="payment" id="paypal">
+                            <img [src]="'https://cdn.nhathuoclongchau.com.vn/unsafe/48x0/filters:quality(90)/https://s3-sgn09.fptcloud.com/lc-public/app-lc/payment/cod.png'" alt="">
+                            <label for="paypal">Thanh toán tiền mặt</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                            <label class="custom-control-label" for="directcheck">Thanh toán bằng chuyển khoản (QR
+                        <div class="custom-payment">
+                            <input type="radio" name="payment" id="directcheck">
+                            <img [src]="'https://cdn.nhathuoclongchau.com.vn/unsafe/48x0/filters:quality(90)/https://s3-sgn09.fptcloud.com/lc-public/app-lc/payment/qr.png'" alt="">
+                            <label for="directcheck">Thanh toán bằng chuyển khoản (QR
                                 Code)</label>
                         </div>
                     </div>
                     <div class="form-group mb-4">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                            <label class="custom-control-label" for="banktransfer">Thanh toán bằng ví MoMo</label>
+                        <div class="custom-payment">
+                            <input type="radio" name="payment" id="banktransfer">
+                            <img [src]="'https://cdn.nhathuoclongchau.com.vn/unsafe/48x0/filters:quality(90)/https://s3-sgn09.fptcloud.com/lc-public/app-lc/payment/momo.png'" alt="">
+                            <label for="banktransfer">Thanh toán bằng ví MoMo</label>
                         </div>
                     </div>
                 </div>
