@@ -22,4 +22,14 @@ export class SweetAlertService {
   public info(message: string) {
     Swal.fire('Thông báo!', message, 'info');
   }
+
+  public successNoButton(message: string) {
+    Swal.fire({
+      position: "top",
+      icon: "success",
+      title: message,
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
 }

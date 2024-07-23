@@ -3,6 +3,7 @@ import { SignInRequest } from '../../../models/requests/account/sign-in-request'
 import { AccountService } from '../../../services/account/account.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { LoadingService } from 'src/app/services/loading/loading.service';
+import { SweetAlertService } from 'src/app/services/sweet-alert/sweet-alert.service';
 
 @Component({
   selector: 'ngx-sign-in',
@@ -15,7 +16,8 @@ export class SignInComponent {
   constructor(
     private accountService: AccountService,
     private authService: AuthService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private sweetAlertService: SweetAlertService
   ) {}
 
   signIn() {
@@ -25,26 +27,29 @@ export class SignInComponent {
       if (res.code === 200) {
         this.authService.setToken(res.obj.token);
         this.authService.setName(res.obj.name);
-        console.log(this.authService.getToken());
-        // this.toast.successToast("Thành Công", res.message);
 
         setTimeout(() => {
           this.loadingService.hide();
-          
-          window.location.href = "/ecommerce/home";
-        }, 1000);
+          this.sweetAlertService.successNoButton('Đăng nhập thành công');
+        }, 1500);
+
+        setTimeout(() => {
+          window.location.href = '/ecommerce/home';
+        }, 3000);
       } else if (res.code === 401) {
-        // setTimeout(() => {
-        //   this.loading = false;
-        //   this.toast.warningToast("Thất bại", res.message);
-        // }, 1000);
-        console.log(res);
+        setTimeout(() => {
+          this.loadingService.hide();
+          this.sweetAlertService.error(
+            res.validationNotify?.message ?? 'Lỗi gì không biết luôn'
+          );
+        }, 1000);
       } else if (res.code === 403) {
-        // setTimeout(() => {
-        //   this.loading = false;
-        //   this.toast.warningToast("Thất bại", res.message);
-        // }, 1000);
-        console.log(res);
+        setTimeout(() => {
+          this.loadingService.hide();
+          this.sweetAlertService.error(
+            res.validationNotify?.message ?? 'Lỗi gì không biết luôn'
+          );
+        }, 1000);
       }
     });
   }
