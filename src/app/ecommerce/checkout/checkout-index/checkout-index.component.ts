@@ -5,6 +5,7 @@ import { ItemCartResponse } from 'src/app/models/responses/cart/item-cart-respon
 import { CartService } from 'src/app/services/cart/cart.service';
 import { FileService } from 'src/app/services/file/file.service';
 import { LoadingService } from 'src/app/services/loading/loading.service';
+import { SweetAlertService } from 'src/app/services/sweet-alert/sweet-alert.service';
 
 @Component({
   selector: 'ngx-checkout-index',
@@ -26,6 +27,7 @@ export class CheckoutIndexComponent {
     public utilTime: UtilTime,
     private loadingService: LoadingService,
     private router: Router,
+    private sweetAlertService: SweetAlertService
   ) {}
 
   // InitData
@@ -77,6 +79,12 @@ export class CheckoutIndexComponent {
 
   // đặt hàng
   onClickOrder() {
+    this.loadingService.show();
 
+    setTimeout(() => {
+      this.sweetAlertService.success("Đặt hàng thành công");
+
+      this.loadingService.hide();
+    }, 1000);
   }
 }
