@@ -4,6 +4,7 @@ import { UpdateCartRequest } from 'src/app/models/requests/cart/update-cart-requ
 import { ItemCartResponse } from 'src/app/models/responses/cart/item-cart-response';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { FileService } from 'src/app/services/file/file.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 
 @Component({
   selector: 'ngx-cart-list',
@@ -22,7 +23,8 @@ export class CartListComponent {
   constructor(
     private cartService: CartService,
     public fileService: FileService,
-    public utilTime: UtilTime
+    public utilTime: UtilTime,
+    private loadingService: LoadingService
   ) {}
 
   // InitData
@@ -32,8 +34,14 @@ export class CartListComponent {
 
   // load cart
   loadCart() {
+    this.loadingService.show();
+
     this.cartService.getCart().subscribe((res) => {
-      this.itemCartResponses = res.obj ?? [];
+      setTimeout(() => {
+        this.itemCartResponses = res.obj ?? [];
+
+        this.loadingService.hide();
+      }, 1000);
     });
   }
 
@@ -48,7 +56,7 @@ export class CartListComponent {
   onChangeQuantity(event: any, item: ItemCartResponse) {
     const inputElement = event.target as HTMLInputElement;
     item.quantity = parseInt(inputElement.value, 10);
-    
+
     if (item.quantity < 1) {
       item.quantity = 1;
     }
@@ -71,6 +79,8 @@ export class CartListComponent {
   }
 
   updateCart(item: ItemCartResponse) {
+    this.loadingService.show();
+
     var updateCart: UpdateCartRequest = {
       cartId: item.cartId,
       quantity: item.quantity,
@@ -78,7 +88,11 @@ export class CartListComponent {
 
     this.cartService.update(updateCart).subscribe((res) => {
       if (res.code === 200) {
-        this.calcTotal();
+        setTimeout(() => {
+          this.calcTotal();
+
+          this.loadingService.hide();
+        }, 500);
       }
     });
   }
@@ -87,7 +101,11 @@ export class CartListComponent {
   onClickDeleteCart(item: ItemCartResponse) {
     this.cartService.delete(item.cartId).subscribe((res) => {
       if (res.code === 200) {
-        this.loadCart();
+        setTimeout(() => {
+          this.loadCart();
+
+          this.loadingService.hide();
+        }, 500);
       }
     });
   }
@@ -107,7 +125,6 @@ export class CartListComponent {
         this.cartCheckOut.splice(index, 1);
       }
     }
-    console.log(this.cartCheckOut);
 
     this.calcTotal();
   }
@@ -122,7 +139,7 @@ export class CartListComponent {
   // Tính SubTotal
   calcSubTotal() {
     this.cartCheckOut.forEach((item) => {
-      this.total += (item.quantity * this.loadPrice(item));
+      this.total += item.quantity * this.loadPrice(item);
     });
 
     this.subTotal = this.total;
