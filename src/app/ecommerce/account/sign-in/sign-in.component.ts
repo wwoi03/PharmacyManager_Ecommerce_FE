@@ -49,7 +49,7 @@ export class SignInComponent {
 
         setTimeout(() => {
           this.loading = false;
-          //window.location.href = "/admin/dashboard";
+          window.location.href = "/ecommerce/home";
         }, 1000);
       } else if (res.code === 401) {
         // setTimeout(() => {
