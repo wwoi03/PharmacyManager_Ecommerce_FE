@@ -11,6 +11,7 @@ import { ItemCartResponse } from 'src/app/models/responses/cart/item-cart-respon
 export class CartService {
   private API_BASE_URL = 'http://localhost:5281/api';
   private apiUrl: string = this.API_BASE_URL + "/customer/cart/";
+  public cartCheckout: ItemCartResponse[] = [];
   
   constructor(
     private http: HttpClient,

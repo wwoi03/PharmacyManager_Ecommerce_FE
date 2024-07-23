@@ -18,14 +18,15 @@ const SecondaryBlue = '#1976d2';
         primaryColour: primaryColour,
         secondaryColour: secondaryColour,
         tertiaryColour: primaryColour,
-        backdropBorderRadius: '3px'
+        backdropBorderRadius: '3px',
+        fullScreenBackdrop: true
       }"
-      [template]="loadingTemplate">
-    </ngx-loading
-    ><router-outlet></router-outlet>
-  `
+      [template]="loadingTemplate"
+    >
+    </ngx-loading>
+    <router-outlet></router-outlet>
+  `,
 })
-
 export class AppComponent {
   emptyLoadingTemplate!: TemplateRef<any>;
   showingTemplate = false;

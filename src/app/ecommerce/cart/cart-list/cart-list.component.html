@@ -6,10 +6,10 @@
                 <thead class="thead-dark">
                     <tr>
                         <th style="width: 5%;">Chọn</th>
-                        <th style="width: 40%;">Sản phẩm</th>
+                        <th style="width: 35%;">Sản phẩm</th>
                         <th style="width: 15%;">Giá/Đơn vị</th>
                         <th style="width: 20%;">Số lượng</th>
-                        <th style="width: 10%;">Tổng</th>
+                        <th style="width: 15%;">Tổng</th>
                         <th style="width: 10%;">Xóa</th>
                     </tr>
                 </thead>
@@ -24,13 +24,13 @@
                         </td>
                         <td class="cart-list-product">
                             <img [src]="fileService.loadImage(item.productImage)" alt="">
-                            <span>
+                            <span class="container-product-name">
                                 {{ item.productName }}
                             </span>
                         </td>
                         <td class="align-middle">
                             {{ utilTime.formatCurrency(loadPrice(item)) }}
-                            <p>
+                            <p style="margin: 0; padding: 0;">
                                 {{ item.unitName }}
                             </p>
                         </td>
@@ -80,23 +80,23 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Giảm giá trực tiếp</h6>
-                        <h6 class="font-weight-medium">{{ utilTime.formatCurrency(0) }}</h6>
+                        <h6 class="font-weight-medium">{{ utilTime.formatCurrency(discountDirect) }}</h6>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Giảm giá voucher</h6>
-                        <h6 class="font-weight-medium">{{ utilTime.formatCurrency(0) }}</h6>
+                        <h6 class="font-weight-medium">{{ utilTime.formatCurrency(discountVoucher) }}</h6>
                     </div>
-                    <!-- <div class="d-flex justify-content-between">
+                    <div *ngIf="discountVoucher > 0 || discountDirect > 0" class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Tiết kiệm được</h6>
-                        <h6 class="font-weight-medium">0 VNĐ</h6>
-                    </div> -->
+                        <h6 class="font-weight-medium">{{ utilTime.formatCurrency(discountVoucher + discountDirect) }}</h6>
+                    </div>
                 </div>
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Thành tiền</h5>
                         <h5>{{ utilTime.formatCurrency(total) }}</h5>
                     </div>
-                    <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Mua hàng</button>
+                    <button (click)="onClickCheckout()" class="btn btn-block btn-primary font-weight-bold my-3 py-3">Mua hàng</button>
                 </div>
             </div>
         </div>

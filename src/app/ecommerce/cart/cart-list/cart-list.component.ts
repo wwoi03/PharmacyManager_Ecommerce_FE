@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UtilTime } from 'src/app/helpers/utils/util-time';
 import { UpdateCartRequest } from 'src/app/models/requests/cart/update-cart-request';
 import { ItemCartResponse } from 'src/app/models/responses/cart/item-cart-response';
@@ -18,13 +19,15 @@ export class CartListComponent {
   subTotal: number = 0;
   total: number = 0;
   discountVoucher: number = 0;
+  discountDirect: number = 0;
 
   // constructor
   constructor(
     private cartService: CartService,
     public fileService: FileService,
     public utilTime: UtilTime,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private router: Router
   ) {}
 
   // InitData
@@ -110,6 +113,12 @@ export class CartListComponent {
     });
   }
 
+  // Checkout
+  onClickCheckout() {
+    this.cartService.cartCheckout = this.cartCheckOut;
+    this.router.navigate(['/ecommerce/checkout']);
+  }
+
   // chọn sản phẩm
   onChangeCheckbox(event: any, item: ItemCartResponse) {
     const checkbox = event.target as HTMLInputElement;
@@ -133,7 +142,7 @@ export class CartListComponent {
   calcTotal() {
     this.total = 0;
     this.calcSubTotal();
-    this.total += this.discountVoucher;
+    this.total += this.discountVoucher + this.discountDirect;
   }
 
   // Tính SubTotal
