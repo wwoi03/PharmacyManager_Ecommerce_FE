@@ -29,9 +29,9 @@
                             </span>
                         </td>
                         <td class="align-middle">
-                            {{ formatCurrency(150000) }}
+                            {{ utilTime.formatCurrency(loadPrice(item)) }}
                             <p>
-                                VNĐ/{{ item.unitName }}
+                                {{ item.unitName }}
                             </p>
                         </td>
                         <td class="align-middle">
@@ -41,7 +41,7 @@
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                <input type="text"
+                                <input type="number"
                                     class="form-control form-control-sm bg-secondary border-0 text-center"
                                     [value]="item.quantity" (input)="onChangeQuantity($event, item)">
                                 <div class="input-group-btn" (click)="onClickIncrease(item)">
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="align-middle">{{ formatCurrency(item.quantity * 150000) }}</td>
+                        <td class="align-middle">{{ utilTime.formatCurrency(item.quantity * loadPrice(item)) }}</td>
                         <td class="align-middle">
                             <button class="btn btn-sm btn-danger" (click)="onClickDeleteCart(item)">
                                 <i class="fa fa-times"></i>
@@ -76,15 +76,15 @@
                 <div class="border-bottom pb-2">
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Tổng tiền</h6>
-                        <h6>{{ formatCurrency(subTotal) }}</h6>
+                        <h6>{{ utilTime.formatCurrency(subTotal) }}</h6>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Giảm giá trực tiếp</h6>
-                        <h6 class="font-weight-medium">{{ formatCurrency(0) }}</h6>
+                        <h6 class="font-weight-medium">{{ utilTime.formatCurrency(0) }}</h6>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Giảm giá voucher</h6>
-                        <h6 class="font-weight-medium">{{ formatCurrency(0) }}</h6>
+                        <h6 class="font-weight-medium">{{ utilTime.formatCurrency(0) }}</h6>
                     </div>
                     <!-- <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Tiết kiệm được</h6>
@@ -94,7 +94,7 @@
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Thành tiền</h5>
-                        <h5>{{ formatCurrency(total) }}</h5>
+                        <h5>{{ utilTime.formatCurrency(total) }}</h5>
                     </div>
                     <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Mua hàng</button>
                 </div>
