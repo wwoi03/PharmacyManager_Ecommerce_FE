@@ -1,10 +1,44 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'ngx-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  // variables
+  isSignIn: boolean = false;
+  customerName: string | undefined;
 
+  // constructor
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {
+
+  }
+
+  ngOnInit() {
+    if (this.authService.getToken()) {
+      this.isSignIn = true;
+    }
+
+    const signInName = this.authService.getName();
+    this.customerName = signInName ? signInName : "Chưa đăng nhập";
+  }
+
+  signIn() {
+    this.router.navigate(['/ecommerce/account/sign-in']);
+  }
+
+  logout() {
+    this.authService.logout();
+    window.location.href = "/ecommerce/home";
+  }
+
+  onClickCart() {
+    this.router.navigate(['/ecommerce/cart/cart-index']);
+  }
 }

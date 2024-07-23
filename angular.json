@@ -7,14 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss",
-          "standalone": false
-        },
-        "@schematics/angular:directive": {
-          "standalone": false
-        },
-        "@schematics/angular:pipe": {
-          "standalone": false
+          "style": "scss"
         }
       },
       "root": "",
@@ -22,21 +15,19 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pharmacy-manager-ecommerce-fe",
+            "outputPath": "dist/PharmacyManager_Ecommerce_FE",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
@@ -48,21 +39,24 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
               "outputHashing": "all"
             },
             "development": {
+              "buildOptimizer": false,
               "optimization": false,
+              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -71,16 +65,19 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "PharmacyManager_Ecommerce_FE:build:production"
+              "browserTarget": "PharmacyManager_Ecommerce_FE:build:production"
             },
             "development": {
-              "buildTarget": "PharmacyManager_Ecommerce_FE:build:development"
+              "browserTarget": "PharmacyManager_Ecommerce_FE:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "PharmacyManager_Ecommerce_FE:build"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -92,10 +89,8 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
@@ -107,6 +102,6 @@
     }
   },
   "cli": {
-    "analytics": "6a8f8ab5-bf95-453a-8b05-995cd65adfe6"
+    "analytics": false
   }
 }
