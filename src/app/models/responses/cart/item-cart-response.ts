@@ -2,6 +2,7 @@ import { ShipmentDetailsUnitResponse } from "../shipment-details-unit/shipment-d
 
 export interface ItemCartResponse {
     cartId: string;
+    shipmentDetailsId: string;
     productId: string;
     unitId: string;
     productName: string;

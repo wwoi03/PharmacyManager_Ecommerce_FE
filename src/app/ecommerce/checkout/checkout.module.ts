@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CheckoutRoutingModule, routedComponents } from './checkout-routing.module';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
     NgSelectModule, 
     NgOptionHighlightModule, 
+    FormsModule,
   ]
 })
 export class CheckoutModule { }

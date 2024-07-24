@@ -14,13 +14,14 @@
 
 <!-- Checkout Start -->
 <div class="container-fluid">
-    <div class="row px-xl-5">
+    <form (ngSubmit)="onClickCreateOrder()" #orderForm="ngForm" class="row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">
             <!-- Danh sách sản phẩm -->
             <div>
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Danh sách sản
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Danh
+                        sách sản
                         phẩm</span></h5>
-            
+
                 <table class="table table-light table-borderless table-hover text-center p-30 mb-5">
                     <thead class="thead-dark">
                         <tr>
@@ -46,7 +47,8 @@
                             </td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <input type="number" class="form-control form-control-sm bg-secondary border-0 text-center"
+                                    <input type="number"
+                                        class="form-control form-control-sm bg-secondary border-0 text-center"
                                         [value]="item.quantity" readonly>
                                 </div>
                             </td>
@@ -57,7 +59,8 @@
             </div>
 
             <!-- Chọn hình thức nhận hàng -->
-            <ngx-checkout-info-receive></ngx-checkout-info-receive>
+            <ngx-checkout-info-receive
+                [createOrderCommandRequest]="createOrderCommandRequest"></ngx-checkout-info-receive>
 
             <!-- Địa chỉ mới -->
             <ngx-checkout-new-address class="collapse mb-5" id="shipping-address"></ngx-checkout-new-address>
@@ -100,8 +103,7 @@
                             <h5>Thành tiền</h5>
                             <h5>{{ utilTime.formatCurrency(total) }}</h5>
                         </div>
-                        <button (click)="onClickOrder()"
-                            class="btn btn-block btn-primary font-weight-bold my-3 py-3">Hoàn
+                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Hoàn
                             tất</button>
                     </div>
                 </div>
@@ -116,29 +118,35 @@
                 <div class="bg-light p-30">
                     <div class="form-group">
                         <div class="custom-payment">
-                            <input type="radio" checked name="payment" id="paypal">
-                            <img [src]="'https://cdn.nhathuoclongchau.com.vn/unsafe/48x0/filters:quality(90)/https://s3-sgn09.fptcloud.com/lc-public/app-lc/payment/cod.png'" alt="">
+                            <input type="radio" [(ngModel)]="createOrderCommandRequest.paymentMethodId" value="952d51bb-c0bc-4aaa-bdef-83d5b47b2e2a"
+                                name="paymentMethodId" id="paypal">
+                            <img [src]="'https://cdn.nhathuoclongchau.com.vn/unsafe/48x0/filters:quality(90)/https://s3-sgn09.fptcloud.com/lc-public/app-lc/payment/cod.png'"
+                                alt="">
                             <label for="paypal">Thanh toán tiền mặt</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="custom-payment">
-                            <input type="radio" name="payment" id="directcheck">
-                            <img [src]="'https://cdn.nhathuoclongchau.com.vn/unsafe/48x0/filters:quality(90)/https://s3-sgn09.fptcloud.com/lc-public/app-lc/payment/qr.png'" alt="">
+                            <input type="radio" [(ngModel)]="createOrderCommandRequest.paymentMethodId" value="db15f520-126c-4d52-8451-c3b7d0d983f1"
+                            name="paymentMethodId" id="directcheck">
+                            <img [src]="'https://cdn.nhathuoclongchau.com.vn/unsafe/48x0/filters:quality(90)/https://s3-sgn09.fptcloud.com/lc-public/app-lc/payment/qr.png'"
+                                alt="">
                             <label for="directcheck">Thanh toán bằng chuyển khoản (VNPay) (QR
                                 Code)</label>
                         </div>
                     </div>
                     <div class="form-group mb-4">
                         <div class="custom-payment">
-                            <input type="radio" name="payment" id="banktransfer">
-                            <img [src]="'https://cdn.nhathuoclongchau.com.vn/unsafe/48x0/filters:quality(90)/https://s3-sgn09.fptcloud.com/lc-public/app-lc/payment/momo.png'" alt="">
+                            <input type="radio" [(ngModel)]="createOrderCommandRequest.paymentMethodId" value="e1d62685-baa3-4568-8d5f-b11f3b5a821a"
+                            name="paymentMethodId" id="banktransfer">
+                            <img [src]="'https://cdn.nhathuoclongchau.com.vn/unsafe/48x0/filters:quality(90)/https://s3-sgn09.fptcloud.com/lc-public/app-lc/payment/momo.png'"
+                                alt="">
                             <label for="banktransfer">Thanh toán bằng ví MoMo</label>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 <!-- Checkout End -->

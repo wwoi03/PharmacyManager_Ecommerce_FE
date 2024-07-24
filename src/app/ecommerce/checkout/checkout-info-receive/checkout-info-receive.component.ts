@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CreateOrderCommandRequest } from 'src/app/models/requests/order/create-order-request';
 import { AddressService } from 'src/app/services/address/address.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class CheckoutInfoReceiveComponent {
   wards: any[] = [];
   isDistrict: boolean = true;
   isWard: boolean = true;
+  @Input() createOrderCommandRequest: CreateOrderCommandRequest = new CreateOrderCommandRequest();
 
   // constructor
   constructor(private addressService: AddressService) {}
@@ -20,6 +22,7 @@ export class CheckoutInfoReceiveComponent {
   // InitData
   ngOnInit() {
     this.loadProvinces();
+    console.log(this.createOrderCommandRequest);
   }
 
   // Load Provinces
