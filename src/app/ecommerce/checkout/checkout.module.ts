@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CheckoutRoutingModule, routedComponents } from './checkout-routing.module';
+import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,10 @@ import { CheckoutRoutingModule, routedComponents } from './checkout-routing.modu
   ],
   imports: [
     CommonModule,
-    CheckoutRoutingModule
+    CheckoutRoutingModule,
+
+    NgSelectModule, 
+    NgOptionHighlightModule, 
   ]
 })
 export class CheckoutModule { }

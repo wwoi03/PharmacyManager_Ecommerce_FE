@@ -33,15 +33,18 @@
         </div>
         <div class="col-md-6 form-group">
             <label>Tỉnh/thành phố</label>
-            <input class="form-control" type="text" placeholder="Chọn tỉnh/thành phố">
+            <ng-select [items]="provinces" bindLabel="name" bindValue="id" name="categoryId"
+                placeholder="Tìm kiếm theo tên tỉnh/thành phố"> </ng-select>
         </div>
         <div class="col-md-6 form-group">
             <label>Quận/huyện</label>
-            <input class="form-control" type="text" placeholder="Chọn quận/huyện">
+            <ng-select [items]="districts" bindLabel="name" bindValue="id" name="categoryId"
+                placeholder="Tìm kiếm theo tên quận/huyện"> </ng-select>
         </div>
         <div class="col-md-12 form-group">
             <label>Phường/xã</label>
-            <input class="form-control" type="text" placeholder="Chọn phường/xã">
+            <ng-select [items]="wards" bindLabel="name" bindValue="id" name="categoryId"
+                placeholder="Tìm kiếm theo tên phường/xã"> </ng-select>
         </div>
         <div class="col-md-12 form-group">
             <label>Địa chỉ cụ thể</label>
@@ -49,7 +52,8 @@
         </div>
         <div class="col-md-12 form-group">
             <label>Ghi chú (không bắt buộc)</label>
-            <textarea class="form-control" type="text" placeholder="Ví dụ: Hãy gọi cho tôi 15 phút trước khi giao"></textarea>
+            <textarea class="form-control" type="text"
+                placeholder="Ví dụ: Hãy gọi cho tôi 15 phút trước khi giao"></textarea>
         </div>
 
         <div class="col-md-12 form-group">
