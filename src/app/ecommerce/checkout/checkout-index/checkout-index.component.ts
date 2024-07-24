@@ -33,9 +33,9 @@ export class CheckoutIndexComponent {
   // InitData
   ngOnInit() {
     // kiểm tra đã chọn sản phẩm thanh toán
-    // if (this.cartService.cartCheckout.length < 1) {
-    //   this.router.navigate(['/ecommerce/cart']);
-    // }
+    if (this.cartService.cartCheckout.length < 1) {
+      this.router.navigate(['/ecommerce/cart']);
+    }
 
     this.loadCart();
   }
