@@ -116,6 +116,7 @@ export class CartListComponent {
   // Checkout
   onClickCheckout() {
     this.cartService.cartCheckout = this.cartCheckOut;
+    localStorage.setItem('cartCheckout', JSON.stringify(this.cartService.cartCheckout));
     this.router.navigate(['/ecommerce/checkout']);
   }
 
