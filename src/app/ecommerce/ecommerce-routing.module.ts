@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EcommerceComponent } from './ecommerce.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from '../services/auth/auth-guard';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
       {
         path: 'order',
         loadChildren: () => import('./order/order.module').then((m) => m.OrderModule),
+        canActivate: [AuthGuard],
       },
     ],
   },
