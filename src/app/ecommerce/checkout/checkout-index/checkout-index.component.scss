@@ -38,3 +38,36 @@ input[type="number"] {
   text-overflow: ellipsis;
   text-align: justify !important;
 }
+
+.custom-payment {
+  display: flex !important;
+  justify-content: left !important;
+  align-items: center !important;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-payment * {
+  margin: 0;
+  padding: 0;
+}
+
+.custom-payment:hover * {
+  cursor: pointer;
+}
+
+.custom-payment input {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  background-color: #ADB5BD;
+}
+
+.custom-payment img {
+  margin-right: 10px;
+  border-radius: 8px;
+}
+
+.custom-payment label {
+  
+}
