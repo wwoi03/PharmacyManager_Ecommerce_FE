@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UtilTime } from 'src/app/helpers/utils/util-time';
 import { CreateOrderCommandRequest } from 'src/app/models/requests/order/create-order-request';
 import { ItemCartResponse } from 'src/app/models/responses/cart/item-cart-response';
@@ -26,6 +26,7 @@ export class CheckoutIndexComponent {
   createOrderCommandRequest: CreateOrderCommandRequest = new CreateOrderCommandRequest();
   @ViewChild('orderForm') orderForm: NgForm | undefined;
   paymentUrl: string = '';
+  result: any = {};
 
   // constructor
   constructor(
@@ -37,6 +38,7 @@ export class CheckoutIndexComponent {
     private sweetAlertService: SweetAlertService,
     private orderService: OrderService,
     private paymentService: PaymentService,
+    private route: ActivatedRoute,
   ) {}
 
   // InitData
@@ -54,6 +56,29 @@ export class CheckoutIndexComponent {
       this.loadCart();
     } else {
       this.router.navigate(['/ecommerce/cart']);
+    }
+
+    this.route.queryParams.subscribe(params => {
+      this.result = params;
+
+      if (Object.keys(this.result).length != 0) {
+        this.loadingService.hide();
+        this.paymentCallback()
+      }
+    });
+  }
+
+  // Xử lý paymentCallback
+  paymentCallback() {
+    if (this.result.Success) {
+      this.sweetAlertService.successNoButton("Đặt hàng thành công.");
+      localStorage.removeItem('cartCheckout');
+
+      setTimeout(() => {
+        this.router.navigate(['/ecommerce/home']);
+      }, 1000);
+    } else {
+      this.sweetAlertService.error("Thanh toán thất bại.");
     }
   }
 
@@ -117,7 +142,7 @@ export class CheckoutIndexComponent {
 
             if (res.obj != null) {
               console.log(res.obj);
-              //window.location.href = res.obj;
+              window.location.href = res.obj;
             }
           }, 1000);
         }
