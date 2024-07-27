@@ -32,7 +32,7 @@
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
-                            <ngx-order-all></ngx-order-all>
+                            <ngx-order-all *ngIf="itemOrdersResponse.length > 0" [itemOrdersResponse]="itemOrdersResponse"></ngx-order-all>
                         </div>
                         <div class="tab-pane fade" id="tab-pane-2">
                             <h4 class="mb-3">Additional Information</h4>
