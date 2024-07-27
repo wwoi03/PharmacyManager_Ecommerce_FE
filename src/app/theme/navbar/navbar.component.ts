@@ -54,4 +54,12 @@ export class NavbarComponent {
   onClickCart() {
     this.router.navigate(['/ecommerce/cart/cart-index']);
   }
+
+  onClickMyAccount() {
+    this.router.navigate(['/ecommerce/order/order-index']);
+  }
+
+  clickMyOrder() {
+    this.router.navigate(['/ecommerce/order/order-index']);
+  }
 }

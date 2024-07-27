@@ -41,6 +41,7 @@ export class AuthService {
   }
 
   logout(): void {
+    localStorage.clear();
     this.cookieService.delete(this.TOKEN_NAME, '/');
     this.cookieService.delete(this.ROLES, '/');
     this.cookieService.delete(this.NAME, '/');
