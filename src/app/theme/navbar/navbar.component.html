@@ -20,7 +20,7 @@
                         <button *ngIf="!isSignIn" class="dropdown-item" type="button">Đăng ký</button>
                         <button *ngIf="isSignIn" class="dropdown-item" type="button" (click)="onClickMyAccount()">Tài
                             khoản</button>
-                        <button *ngIf="isSignIn" class="dropdown-item" type="button" (click)="logout()">Đơn
+                        <button *ngIf="isSignIn" class="dropdown-item" type="button" (click)="clickMyOrder()">Đơn
                             hàng</button>
                         <button *ngIf="isSignIn" class="dropdown-item" type="button" (click)="logout()">Yêu
                             thích</button>
