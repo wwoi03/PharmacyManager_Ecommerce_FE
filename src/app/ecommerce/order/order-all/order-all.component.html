@@ -4,13 +4,28 @@
             <strong style="color: black;">Đơn hàng {{ utilTime.formatDate(item.orderDate) }}</strong>
             <i class="fa-solid fa-circle" style="margin: 0 10px; font-size: 4px;"></i>
             <span>Giao hàng tận nơi</span>
-            <i #iconStatus class="fa-solid fa-circle" style="margin: 0 10px; font-size: 4px;"></i>
+            <i class="fa-solid fa-circle" style="margin: 0 10px; font-size: 4px;"></i>
             <span>#{{ item.codeOrder }}</span>
         </div>
 
-        <div class="d-flex" style="align-items: center;">
+        <div *ngIf="item.status === 'OrderBeingDelivered'" class="d-flex" style="align-items: center; color: #3277B5;">
             <i class="fa-solid fa-circle" style="margin: 0 10px; font-size: 10px;"></i>
-            <span>{{ getStatus(item.status) }}</span>
+            <span>Đang giao</span>
+        </div>
+
+        <div *ngIf="item.status === 'CancellationOrderApproved' || item.status === 'StoreCanceledOrder'" class="d-flex" style="align-items: center; color: #D92D20;">
+            <i class="fa-solid fa-circle" style="margin: 0 10px; font-size: 10px;"></i>
+            <span>Đã hủy</span>
+        </div>
+
+        <div *ngIf="item.status === 'OrderDelivered'" class="d-flex" style="align-items: center; color: #38AA3A;">
+            <i class="fa-solid fa-circle" style="margin: 0 10px; font-size: 10px;"></i>
+            <span>Đã giao</span>
+        </div>
+
+        <div *ngIf="item.status === 'OrderWaitingConfirmation'" class="d-flex" style="align-items: center; color: #F78F03;">
+            <i class="fa-solid fa-circle" style="margin: 0 10px; font-size: 10px;"></i>
+            <span>Đang xử lý</span>
         </div>
     </div>
 

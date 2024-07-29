@@ -12,7 +12,6 @@ import { FileService } from 'src/app/services/file/file.service';
 export class OrderAllComponent {
   // Input()
   @Input() itemOrdersResponse: ItemOrderResponse[] = [];
-  @ViewChild('iconStatus') iconStatus: ElementRef | undefined;
 
   // constructor
   constructor(
@@ -24,26 +23,5 @@ export class OrderAllComponent {
   ngOnInit() {
     console.log('child: ');
     console.log(this.itemOrdersResponse);
-  }
-
-  getStatus(statusType: string): string {
-    switch (statusType) {
-      case 'OrderWaitingConfirmation':
-        return 'Đang xử lý';
-      case 'OrderBeingPrepared': // bỏ
-        return 'Đang giao';
-      case 'OrderBeingDelivered':
-        return 'Đang giao';
-      case 'OrderDelivered':
-        return 'Đã giao';
-      case 'RequestCancelOrder': // bỏ
-        return 'Đã hủy';
-      case 'CancellationOrderApproved':
-        return 'Đã hủy';
-      case 'StoreCanceledOrder':
-        return 'Đã hủy';
-      default:
-        return '';
-    }
   }
 }
