@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { UtilMoney } from 'src/app/helpers/utils/util-money';
 import { UtilTime } from 'src/app/helpers/utils/util-time';
 import { ItemOrderResponse } from 'src/app/models/responses/order/item-order-response';
@@ -12,6 +12,7 @@ import { FileService } from 'src/app/services/file/file.service';
 export class OrderAllComponent {
   // Input()
   @Input() itemOrdersResponse: ItemOrderResponse[] = [];
+  @ViewChild('iconStatus') iconStatus: ElementRef | undefined;
 
   // constructor
   constructor(
@@ -29,13 +30,13 @@ export class OrderAllComponent {
     switch (statusType) {
       case 'OrderWaitingConfirmation':
         return 'Đang xử lý';
-      case 'OrderBeingPrepared':
+      case 'OrderBeingPrepared': // bỏ
         return 'Đang giao';
       case 'OrderBeingDelivered':
         return 'Đang giao';
       case 'OrderDelivered':
         return 'Đã giao';
-      case 'RequestCancelOrder':
+      case 'RequestCancelOrder': // bỏ
         return 'Đã hủy';
       case 'CancellationOrderApproved':
         return 'Đã hủy';

@@ -4,7 +4,7 @@
             <strong style="color: black;">Đơn hàng {{ utilTime.formatDate(item.orderDate) }}</strong>
             <i class="fa-solid fa-circle" style="margin: 0 10px; font-size: 4px;"></i>
             <span>Giao hàng tận nơi</span>
-            <i class="fa-solid fa-circle" style="margin: 0 10px; font-size: 4px;"></i>
+            <i #iconStatus class="fa-solid fa-circle" style="margin: 0 10px; font-size: 4px;"></i>
             <span>#{{ item.codeOrder }}</span>
         </div>
 
@@ -21,14 +21,14 @@
             <tbody class="align-middle">
                 <tr>
                     <td style="width: 100%;" class="cart-list-product">
-                        <img [src]="fileService.loadImage(item.imageFirstProduct)"
-                            alt="">
+                        <img [src]="fileService.loadImage(item.imageFirstProduct)" alt="">
                         <span class="container-product-name">
                             <div style="color: black;">
                                 {{ item.nameFirstProduct }}
                             </div>
 
-                            <div style="margin-top: 4px; font-size: 14px;" *ngIf="item.productQuantity > 1">+{{ item.productQuantity - 1 }} sản phảm khác
+                            <div style="margin-top: 4px; font-size: 14px;" *ngIf="item.productQuantity > 1">+{{
+                                item.productQuantity - 1 }} sản phảm khác
                             </div>
                         </span>
                     </td>
