@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
+import { SweetAlertService } from 'src/app/services/sweet-alert/sweet-alert.service';
 
 @Component({
   selector: 'ngx-navbar',
@@ -15,7 +17,9 @@ export class NavbarComponent {
   // constructor
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private sweetAlertService: SweetAlertService,
+    private loadingService: LoadingService,
   ) {
 
   }
@@ -34,11 +38,28 @@ export class NavbarComponent {
   }
 
   logout() {
+    this.loadingService.show();
     this.authService.logout();
-    window.location.href = "/ecommerce/home";
+
+    setTimeout(() => {
+      this.loadingService.hide();
+      this.sweetAlertService.successNoButton("Đăng xuất thành công");
+    }, 1500);
+
+    setTimeout(() => {
+      window.location.href = '/ecommerce/home';
+    }, 3000);
   }
 
   onClickCart() {
     this.router.navigate(['/ecommerce/cart/cart-index']);
+  }
+
+  onClickMyAccount() {
+    this.router.navigate(['/ecommerce/order/order-index']);
+  }
+
+  clickMyOrder() {
+    this.router.navigate(['/ecommerce/order/order-index']);
   }
 }

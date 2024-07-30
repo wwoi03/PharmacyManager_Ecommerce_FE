@@ -1,0 +1,82 @@
+<h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Chọn hình thức
+        nhận hàng</span></h5>
+<div class="bg-light p-30 mb-5">
+    <div class="row">
+        <!-- Thông tin người đặt -->
+        <div class="col-md-12 form-group">
+            <strong style="font-size: 20px;">Thông tin người đặt</strong>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Tên người đặt<span class="text-danger">*</span></label>
+            <input name="ordererName" [(ngModel)]="createOrderCommandRequest.ordererName" class="form-control"
+                type="text" placeholder="John">
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Số điện thoại<span class="text-danger">*</span></label>
+            <input class="form-control" type="text" placeholder="Doe">
+        </div>
+        <div class="col-md-12 form-group">
+            <label>E-mail</label>
+            <input name="email" [(ngModel)]="createOrderCommandRequest.email" class="form-control" type="text"
+                placeholder="example@email.com">
+        </div>
+
+        <!-- Địa chỉ nhận hàng -->
+        <div class="col-md-12 form-group mt-2">
+            <strong style="font-size: 20px;">Địa chỉ nhận hàng</strong>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Tên người nhận<span class="text-danger">*</span></label>
+            <input name="receiverName" [(ngModel)]="createOrderCommandRequest.receiverName" class="form-control"
+                type="text" placeholder="Tên người nhận">
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Số điện thoại<span class="text-danger">*</span></label>
+            <input name="" [(ngModel)]="createOrderCommandRequest.recipientPhone" class="form-control" type="text"
+                placeholder="Số điện thoại">
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Tỉnh/thành phố<span class="text-danger">*</span></label>
+            <ng-select [items]="provinces" bindLabel="name" bindValue="name"
+                placeholder="Tìm kiếm theo tên tỉnh/thành phố" (change)="onProvinceChange($event)"
+                [(ngModel)]="createOrderCommandRequest.provinceOrCity" name="provinceOrCity"> </ng-select>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Quận/huyện<span class="text-danger">*</span></label>
+            <ng-select [items]="districts" bindLabel="name" bindValue="name" 
+                placeholder="Tìm kiếm theo tên quận/huyện" (change)="onDistrictChange($event)" [readonly]="isDistrict"
+                [(ngModel)]="createOrderCommandRequest.district" name="district">
+            </ng-select>
+        </div>
+        <div class="col-md-12 form-group">
+            <label>Phường/xã<span class="text-danger">*</span></label>
+            <ng-select [items]="wards" bindLabel="name" bindValue="name" 
+                placeholder="Tìm kiếm theo tên phường/xã" [readonly]="isWard"
+                [(ngModel)]="createOrderCommandRequest.ward" name="ward"> </ng-select>
+        </div>
+        <div class="col-md-12 form-group">
+            <label>Địa chỉ cụ thể<span class="text-danger">*</span></label>
+            <input [(ngModel)]="createOrderCommandRequest.addressDetails" name="addressDetails" class="form-control"
+                type="text" placeholder="Nhập địa chỉ cụ thể">
+        </div>
+        <div class="col-md-12 form-group">
+            <label>Ghi chú (không bắt buộc)</label>
+            <textarea class="form-control" type="text" placeholder="Ví dụ: Hãy gọi cho tôi 15 phút trước khi giao"
+                [(ngModel)]="createOrderCommandRequest.note" name="note"></textarea>
+        </div>
+
+        <!-- <div class="col-md-12 form-group">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="newaccount">
+                <label class="custom-control-label" for="newaccount">Create an account</label>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="shipto">
+                <label class="custom-control-label" for="shipto" data-toggle="collapse"
+                    data-target="#shipping-address">Ship to different address</label>
+            </div>
+        </div> -->
+    </div>
+</div>
