@@ -8,9 +8,24 @@
             <span>#{{ item.codeOrder }}</span>
         </div>
 
-        <div class="d-flex" style="align-items: center;">
+        <div *ngIf="item.status === 'OrderBeingDelivered'" class="d-flex" style="align-items: center; color: #3277B5;">
             <i class="fa-solid fa-circle" style="margin: 0 10px; font-size: 10px;"></i>
-            <span>{{ getStatus(item.status) }}</span>
+            <span>Đang giao</span>
+        </div>
+
+        <div *ngIf="item.status === 'CancellationOrderApproved' || item.status === 'StoreCanceledOrder'" class="d-flex" style="align-items: center; color: #D92D20;">
+            <i class="fa-solid fa-circle" style="margin: 0 10px; font-size: 10px;"></i>
+            <span>Đã hủy</span>
+        </div>
+
+        <div *ngIf="item.status === 'OrderDelivered'" class="d-flex" style="align-items: center; color: #38AA3A;">
+            <i class="fa-solid fa-circle" style="margin: 0 10px; font-size: 10px;"></i>
+            <span>Đã giao</span>
+        </div>
+
+        <div *ngIf="item.status === 'OrderWaitingConfirmation'" class="d-flex" style="align-items: center; color: #F78F03;">
+            <i class="fa-solid fa-circle" style="margin: 0 10px; font-size: 10px;"></i>
+            <span>Đang xử lý</span>
         </div>
     </div>
 
@@ -21,14 +36,14 @@
             <tbody class="align-middle">
                 <tr>
                     <td style="width: 100%;" class="cart-list-product">
-                        <img [src]="fileService.loadImage(item.imageFirstProduct)"
-                            alt="">
+                        <img [src]="fileService.loadImage(item.imageFirstProduct)" alt="">
                         <span class="container-product-name">
                             <div style="color: black;">
                                 {{ item.nameFirstProduct }}
                             </div>
 
-                            <div style="margin-top: 4px; font-size: 14px;" *ngIf="item.productQuantity > 1">+{{ item.productQuantity - 1 }} sản phảm khác
+                            <div style="margin-top: 4px; font-size: 14px;" *ngIf="item.productQuantity > 1">+{{
+                                item.productQuantity - 1 }} sản phảm khác
                             </div>
                         </span>
                     </td>

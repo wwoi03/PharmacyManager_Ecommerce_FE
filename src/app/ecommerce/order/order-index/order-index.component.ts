@@ -10,6 +10,8 @@ import { OrderService } from 'src/app/services/order/order.service';
 export class OrderIndexComponent {
   // variables
   itemOrdersResponse: ItemOrderResponse[] = [];
+  quantityWaiting: number = 0;
+  quantityBeingDelivered: number = 0;
 
   // constructor
   constructor(
@@ -29,10 +31,17 @@ export class OrderIndexComponent {
       (res) => {
         if (res.code === 200) {
           this.itemOrdersResponse = res.obj ?? [];
-          console.log("Parent: ");
-          console.log(this.itemOrdersResponse);
+          this.quantityWaiting = this.updateQuantity("OrderWaitingConfirmation");
+          this.quantityBeingDelivered = this.updateQuantity("OrderBeingDelivered");
         }
       }
     )
+  }
+
+  // số lượng hiển thị của các đơn hàng
+  updateQuantity(statusStr: string): number {
+    return this.itemOrdersResponse
+      .filter(item => item.status === statusStr)
+      .reduce((sum, item) => sum + 1, 0);
   }
 }

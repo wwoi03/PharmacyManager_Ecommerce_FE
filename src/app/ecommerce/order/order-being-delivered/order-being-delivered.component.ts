@@ -1,15 +1,15 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { UtilMoney } from 'src/app/helpers/utils/util-money';
 import { UtilTime } from 'src/app/helpers/utils/util-time';
 import { ItemOrderResponse } from 'src/app/models/responses/order/item-order-response';
 import { FileService } from 'src/app/services/file/file.service';
 
 @Component({
-  selector: 'ngx-order-all',
-  templateUrl: './order-all.component.html',
-  styleUrls: ['./order-all.component.scss'],
+  selector: 'ngx-order-being-delivered',
+  templateUrl: './order-being-delivered.component.html',
+  styleUrls: ['./order-being-delivered.component.scss'],
 })
-export class OrderAllComponent {
+export class OrderBeingDeliveredComponent {
   // Input()
   @Input() itemOrdersResponse: ItemOrderResponse[] = [];
 
@@ -19,9 +19,4 @@ export class OrderAllComponent {
     public utilMoney: UtilMoney,
     public fileService: FileService
   ) {}
-
-  ngOnInit() {
-    console.log('child: ');
-    console.log(this.itemOrdersResponse);
-  }
 }

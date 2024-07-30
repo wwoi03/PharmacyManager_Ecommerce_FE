@@ -17,9 +17,10 @@ export class SignInComponent {
     private accountService: AccountService,
     private authService: AuthService,
     private loadingService: LoadingService,
-    private sweetAlertService: SweetAlertService
+    private sweetAlertService: SweetAlertService,
   ) {}
 
+  // Đăng nhập
   signIn() {
     this.loadingService.show();
 
@@ -27,6 +28,7 @@ export class SignInComponent {
       if (res.code === 200) {
         this.authService.setToken(res.obj.token);
         this.authService.setName(res.obj.name);
+        
 
         setTimeout(() => {
           this.loadingService.hide();
