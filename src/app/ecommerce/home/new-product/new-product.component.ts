@@ -3,15 +3,13 @@ import { ItemProductResponse } from '../../../models/responses/product/item-prod
 import { ProductService } from '../../../services/product/product.service';
 import { FileService } from 'src/app/services/file/file.service';
 import { UtilMoney } from 'src/app/helpers/utils/util-money';
-import { CartService } from 'src/app/services/cart/cart.service';
-import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 
 @Component({
-  selector: 'ngx-selling-product',
-  templateUrl: './selling-product.component.html',
-  styleUrls: ['./selling-product.component.scss'],
+  selector: 'ngx-new-product',
+  templateUrl: './new-product.component.html',
+  styleUrls: ['./new-product.component.scss'],
 })
-export class SellingProductComponent {
+export class NewProductComponent {
   // variables
   itemProductResponses: ItemProductResponse[] = [];
   @Output() childOnClickBuy = new EventEmitter<ItemProductResponse>();
@@ -20,7 +18,7 @@ export class SellingProductComponent {
   constructor(
     private productService: ProductService,
     public fileService: FileService,
-    public utilMoney: UtilMoney,
+    public utilMoney: UtilMoney
   ) {}
 
   // InitData
@@ -30,7 +28,7 @@ export class SellingProductComponent {
 
   // Load Item Product
   loadItemProduct() {
-    this.productService.getSellingProductByMonth().subscribe((res) => {
+    this.productService.getNewProducts().subscribe((res) => {
       if (res.code === 200) {
         this.itemProductResponses = res.obj as ItemProductResponse[];
       }

@@ -11,9 +11,9 @@
                         <span class="fa fa-user-o"></span>
                     </div>
                     <h3 class="text-center mb-4">Đăng ký</h3>
-                    <form (ngSubmit)="signUp()" #signInForm="ngForm" class="login-form">
+                    <form autocomplete="off" (ngSubmit)="signUp()" #signInForm="ngForm" class="login-form">
                         <div class="form-group">
-                            <input type="text" class="form-control rounded-left" placeholder="Tên đăng nhập" required
+                            <input autocomplete="off" type="text" class="form-control rounded-left" placeholder="Tên đăng nhập" required
                                 [(ngModel)]="signUpRequest.userName" name="userName">
                         </div>
                         <div class="form-group">
@@ -33,10 +33,7 @@
                         </div>
                         <div class="form-group d-md-flex">
                             <div class="w-50">
-                                <label class="checkbox-wrap checkbox-primary">Nhớ mật khẩu
-                                    <input type="checkbox" checked>
-                                    <span class="checkmark"></span>
-                                </label>
+                                <a class="checkbox-primary" href="/ecommerce/account/sign-in">Bạn đã có tài khoản?</a>
                             </div>
                             <div class="w-50 text-md-right">
                                 <a class="checkbox-primary" href="#">Quên mật khẩu</a>

@@ -1,14 +1,1 @@
-.custom-product-info {
-    padding: 12px 12px 0 12px;
-}
-
-.custom-product-name {
-  display: block;
-  display: -webkit-box !important;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: left !important;
-  height: 60px;
-}
+@import '../home.component.scss'

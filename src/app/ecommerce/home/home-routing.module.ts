@@ -6,6 +6,8 @@ import { CategoryComponent } from './category/category.component';
 import { SaleProductComponent } from './sale-product/sale-product.component';
 import { SellingProductComponent } from './selling-product/selling-product.component';
 import { FeaturedCategoryComponent } from './featured-category/featured-category.component';
+import { HomeIndexComponent } from './home-index/home-index.component';
+import { NewProductComponent } from './new-product/new-product.component';
 
 const routes: Routes = [
   {
@@ -27,4 +29,6 @@ export const routedComponents = [
   SaleProductComponent,
   SellingProductComponent,
   FeaturedCategoryComponent,
+  HomeIndexComponent,
+  NewProductComponent,
 ];
