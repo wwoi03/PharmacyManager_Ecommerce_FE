@@ -5,11 +5,11 @@ import { ItemOrderResponse } from 'src/app/models/responses/order/item-order-res
 import { FileService } from 'src/app/services/file/file.service';
 
 @Component({
-  selector: 'ngx-order-all',
-  templateUrl: './order-all.component.html',
-  styleUrls: ['./order-all.component.scss'],
+  selector: 'ngx-order-waiting',
+  templateUrl: './order-waiting.component.html',
+  styleUrls: ['./order-waiting.component.scss'],
 })
-export class OrderAllComponent {
+export class OrderWaitingComponent {
   // Input()
   @Input() itemOrdersResponse: ItemOrderResponse[] = [];
 
@@ -19,9 +19,4 @@ export class OrderAllComponent {
     public utilMoney: UtilMoney,
     public fileService: FileService
   ) {}
-
-  ngOnInit() {
-    console.log('child: ');
-    console.log(this.itemOrdersResponse);
-  }
 }

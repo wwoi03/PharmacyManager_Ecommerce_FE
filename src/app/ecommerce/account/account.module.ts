@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { AccountRoutingModule, routedComponents } from './account-routing.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
-
 
 @NgModule({
   declarations: [

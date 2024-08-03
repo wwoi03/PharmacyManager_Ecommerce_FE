@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { LoadingService } from 'src/app/services/loading/loading.service';
 import { SweetAlertService } from 'src/app/services/sweet-alert/sweet-alert.service';
 
@@ -13,6 +14,7 @@ export class NavbarComponent {
   // variables
   isSignIn: boolean = false;
   customerName: string | undefined;
+  quantityCart: number = 0;
 
   // constructor
   constructor(
@@ -20,6 +22,7 @@ export class NavbarComponent {
     private authService: AuthService,
     private sweetAlertService: SweetAlertService,
     private loadingService: LoadingService,
+    private cartService: CartService
   ) {
 
   }
@@ -31,6 +34,18 @@ export class NavbarComponent {
 
     const signInName = this.authService.getName();
     this.customerName = signInName ? signInName : "Chưa đăng nhập";
+    this.loadQuantityCart();
+  }
+
+  // Load quantity card
+  loadQuantityCart() {
+    this.cartService.getCart().subscribe((res) => {
+      if (res.code === 200) {
+        const quantity = res.obj?.length ?? 0;
+        localStorage.setItem('quantityCart', quantity.toString());
+        this.quantityCart = Number(localStorage.getItem('quantityCart'));
+      }
+    });
   }
 
   signIn() {

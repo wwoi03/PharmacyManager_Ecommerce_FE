@@ -29,7 +29,8 @@ export class SweetAlertService {
       icon: "success",
       title: message,
       showConfirmButton: false,
-      timer: 1500
+      timer: 1500,
+      allowOutsideClick: false // Chặn không cho nhấn ra ngoài để thoát alert
     });
   }
 }
