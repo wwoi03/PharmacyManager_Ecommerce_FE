@@ -8,4 +8,5 @@ export class ItemProductResponse {
   shipmentDetailsId: string = '';
   shipmentDetailsUnits: ShipmentDetailsUnitResponse[] = [];
   discount: number = 0;
+  unitId?: string;
 }

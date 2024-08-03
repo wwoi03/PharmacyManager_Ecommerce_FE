@@ -102,12 +102,12 @@ export class CartListComponent {
 
   // Delete Cart
   onClickDeleteCart(item: ItemCartResponse) {
+    this.loadingService.show();
+
     this.cartService.delete(item.cartId).subscribe((res) => {
       if (res.code === 200) {
         setTimeout(() => {
           this.loadCart();
-
-          this.loadingService.hide();
         }, 500);
       }
     });

@@ -23,6 +23,7 @@
                             <a class="col-lg-4 nav-item nav-link text-dark active" data-toggle="tab"
                                 style="padding: 3px 8px;"
                                 *ngFor="let sduItem of item.shipmentDetailsUnits; let index = index"
+                                (click)="onUnitChange(item, sduItem.unitId)"
                                 [href]="'#tab-pane-'+ item.productId + index" [class.active]="index === 0">{{ sduItem.unitName }}</a>
 
                         </div>
@@ -31,29 +32,17 @@
                                 class="tab-pane fade show" [id]="'tab-pane-' + item.productId + index" [class.active]="index === 0">
                                 <div class="d-flex align-items-center mt-2">
                                     <h6>{{ utilMoney.formatCurrency(sduItem.salePrice) }}</h6>
-                                    <h6>/ {{ sduItem.unitName }}</h6>
-                                    <!-- <h6 class="text-muted ml-2"><del>$123.00</del></h6> -->
+                                    <h6>/{{ sduItem.unitName }}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
 
                     <div style="text-align: left;">
                         {{ item.specifications }}
                     </div>
                     
                     <button (click)="onClickBuy(item)" class="btn btn-primary" style="margin-top: 10px; padding: 6px 0; width: 100%;">Chọn mua</button>
-
-                    <!-- <div class="d-flex align-items-center justify-content-center mb-1">
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small>(99)</small>
-                    </div> -->
                 </div>
             </div>
         </div>
