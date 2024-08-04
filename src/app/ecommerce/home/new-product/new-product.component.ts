@@ -13,6 +13,7 @@ export class NewProductComponent {
   // variables
   itemProductResponses: ItemProductResponse[] = [];
   @Output() childOnClickBuy = new EventEmitter<ItemProductResponse>();
+  @Output() childOnClickDetails = new EventEmitter<ItemProductResponse>();
 
   // constructor
   constructor(
@@ -39,6 +40,12 @@ export class NewProductComponent {
   triggerParentOnClickBuy(item: ItemProductResponse) {
     this.childOnClickBuy.emit(item);
   }
+
+  // Xử lý khi chi tiết
+  triggerParentOnClickDetails(item: ItemProductResponse) {
+    this.childOnClickDetails.emit(item);
+  }
+
 
   // Xử lý khi chọn đơn vị sản phẩm
   onUnitChange(item: ItemProductResponse, unitId: string) {

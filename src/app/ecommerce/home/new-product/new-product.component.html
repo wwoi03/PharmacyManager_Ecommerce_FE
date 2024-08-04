@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="text-center py-4 custom-product-info">
-                    <a class="h6 text-decoration-none  custom-product-name" href="">{{ item.productName }}</a>
+                    <a (click)="triggerParentOnClickDetails(item)" class="h6 text-decoration-none  custom-product-name">{{ item.productName }}</a>
 
                     <div class="bg-secondary bg-light">
                         <div class="d-flex nav nav-tabs bg-light mb-2">

@@ -91,4 +91,8 @@ export class NavbarComponent {
   clickMyOrder() {
     this.router.navigate(['/ecommerce/order/order-index']);
   }
+
+  details() {
+    this.router.navigate(['/ecommerce/product/product-index']);
+  }
 }

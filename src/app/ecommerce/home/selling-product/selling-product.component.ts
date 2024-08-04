@@ -15,12 +15,13 @@ export class SellingProductComponent {
   // variables
   itemProductResponses: ItemProductResponse[] = [];
   @Output() childOnClickBuy = new EventEmitter<ItemProductResponse>();
+  @Output() childOnClickDetails = new EventEmitter<ItemProductResponse>();
 
   // constructor
   constructor(
     private productService: ProductService,
     public fileService: FileService,
-    public utilMoney: UtilMoney,
+    public utilMoney: UtilMoney
   ) {}
 
   // InitData
@@ -42,6 +43,10 @@ export class SellingProductComponent {
     this.childOnClickBuy.emit(item);
   }
 
+  // Xử lý khi chi tiết
+  triggerParentOnClickDetails(item: ItemProductResponse) {
+    this.childOnClickDetails.emit(item);
+  }
   // Xử lý khi chọn đơn vị sản phẩm
   onUnitChange(item: ItemProductResponse, unitId: string) {
     item.unitId = unitId;

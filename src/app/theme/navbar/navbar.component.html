@@ -17,7 +17,8 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <button *ngIf="!isSignIn" class="dropdown-item" type="button" (click)="signIn()">Đăng
                             nhập</button>
-                        <button *ngIf="!isSignIn" class="dropdown-item" type="button" (click)="signUp()">Đăng ký</button>
+                        <button *ngIf="!isSignIn" class="dropdown-item" type="button" (click)="signUp()">Đăng
+                            ký</button>
                         <button *ngIf="isSignIn" class="dropdown-item" type="button" (click)="onClickMyAccount()">Tài
                             khoản</button>
                         <button *ngIf="isSignIn" class="dropdown-item" type="button" (click)="clickMyOrder()">Đơn
@@ -26,6 +27,8 @@
                             thích</button>
                         <button style="border-top: 1px solid #dad2d2;" *ngIf="isSignIn" class="dropdown-item"
                             type="button" (click)="logout()">Đăng xuất</button>
+                        <button style="border-top: 1px solid #dad2d2;" class="dropdown-item"
+                            type="button" (click)="details()">Chi tiết</button>
                     </div>
                 </div>
                 <!-- <div class="btn-group mx-2">
@@ -71,7 +74,8 @@
         <div class="col-lg-4 col-6 text-left">
             <form action="">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Tìm tên thuốc, bệnh lý, thực phẩm chức năng...">
+                    <input type="text" class="form-control"
+                        placeholder="Tìm tên thuốc, bệnh lý, thực phẩm chức năng...">
                     <div class="input-group-append">
                         <span class="input-group-text bg-transparent text-primary">
                             <i class="fa fa-search"></i>

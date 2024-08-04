@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UtilMoney } from 'src/app/helpers/utils/util-money';
 import { CreateCartRequest } from 'src/app/models/requests/cart/create-cart-request';
 import { ItemProductResponse } from 'src/app/models/responses/product/item-product-response';
@@ -13,15 +14,14 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./home-index.component.scss']
 })
 export class HomeIndexComponent {
-  // variables
-
   // constructor
   constructor(
     private productService: ProductService,
     public fileService: FileService,
     public utilMoney: UtilMoney,
     private cartService: CartService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {
 
   }
@@ -43,5 +43,11 @@ export class HomeIndexComponent {
         this.localStorageService.setCartQuantity(cartQuantity);
       }
     });
+  }
+
+  // Xử lý sự kiện
+  handleChildOnClickDetails(item: ItemProductResponse) {
+    const productId: string = item.productId;
+    window.location.href = `/ecommerce/product/product-index/${productId}`;
   }
 }
