@@ -18,6 +18,7 @@ export class NavbarComponent {
   customerName: string | undefined;
   quantityCart: number = 0;
   private subscription: Subscription | undefined;
+  searchContent: string = '';
 
   // constructor
   constructor(
@@ -94,5 +95,12 @@ export class NavbarComponent {
 
   details() {
     this.router.navigate(['/ecommerce/search/search-index']);
+  }
+
+  // onClickSearch
+  onClickSearch() {
+    if (this.searchContent) {
+      this.router.navigate(['/ecommerce/search/search-index'], { queryParams: { searchContent: this.searchContent } });
+    }
   }
 }

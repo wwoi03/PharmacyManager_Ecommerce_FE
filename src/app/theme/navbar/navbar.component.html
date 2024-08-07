@@ -72,12 +72,12 @@
             </a>
         </div>
         <div class="col-lg-4 col-6 text-left">
-            <form action="">
+            <form (ngSubmit)="onClickSearch()">
                 <div class="input-group">
-                    <input type="text" class="form-control"
+                    <input [(ngModel)]="searchContent" name="searchContent" type="text" class="form-control"
                         placeholder="Tìm tên thuốc, bệnh lý, thực phẩm chức năng...">
                     <div class="input-group-append">
-                        <span class="input-group-text bg-transparent text-primary">
+                        <span (click)="onClickSearch()" class="input-group-text bg-transparent text-primary pointer">
                             <i class="fa fa-search"></i>
                         </span>
                     </div>

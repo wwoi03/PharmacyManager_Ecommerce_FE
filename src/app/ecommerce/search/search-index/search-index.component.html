@@ -3,9 +3,8 @@
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
-                <a class="breadcrumb-item text-dark" href="#">Home</a>
-                <a class="breadcrumb-item text-dark" href="#">Shop</a>
-                <span class="breadcrumb-item active">Shop List</span>
+                <a class="breadcrumb-item text-dark" href="#">Trang chủ</a>
+                <span class="breadcrumb-item active">Tìm kiếm</span>
             </nav>
         </div>
     </div>
@@ -30,27 +29,22 @@
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-1">
-                        <label class="custom-control-label" for="price-1">0đ - 100.000đ</label>
+                        <label class="custom-control-label" for="price-1">Dưới 100.000đ</label>
                         <span class="badge border font-weight-normal">150</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-2">
-                        <label class="custom-control-label" for="price-2">100.000đ - 300.000đ</label>
+                        <label class="custom-control-label" for="price-2">100.000đ đến 300.000đ</label>
                         <span class="badge border font-weight-normal">295</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-3">
-                        <label class="custom-control-label" for="price-3">300.000đ - 600.000đ</label>
+                        <label class="custom-control-label" for="price-3">300.000đ đến 500.000đ</label>
                         <span class="badge border font-weight-normal">246</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-4">
-                        <label class="custom-control-label" for="price-4">600.000đ - 1.000.000đ</label>
-                        <span class="badge border font-weight-normal">145</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                         <input type="checkbox" class="custom-control-input" id="price-5">
-                        <label class="custom-control-label" for="price-5">1.000.000đ trở lên</label>
+                        <label class="custom-control-label" for="price-5">Trên 500.000đ</label>
                         <span class="badge border font-weight-normal">168</span>
                     </div>
                 </form>
@@ -61,10 +55,10 @@
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Lọc theo
                     loại sản phẩm</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+                <form class="filter-list">
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="color-all">
-                        <label class="custom-control-label" for="price-all">All Color</label>
+                        <label class="custom-control-label" for="price-all">Tất cả</label>
                         <span class="badge border font-weight-normal">1000</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
@@ -87,6 +81,31 @@
                         <label class="custom-control-label" for="color-4">Blue</label>
                         <span class="badge border font-weight-normal">145</span>
                     </div>
+
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="color-4">
+                        <label class="custom-control-label" for="color-4">Blue</label>
+                        <span class="badge border font-weight-normal">145</span>
+                    </div>
+
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="color-4">
+                        <label class="custom-control-label" for="color-4">Blue</label>
+                        <span class="badge border font-weight-normal">145</span>
+                    </div>
+
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="color-4">
+                        <label class="custom-control-label" for="color-4">Blue</label>
+                        <span class="badge border font-weight-normal">145</span>
+                    </div>
+
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="color-4">
+                        <label class="custom-control-label" for="color-4">Blue</label>
+                        <span class="badge border font-weight-normal">145</span>
+                    </div>
+                    
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                         <input type="checkbox" class="custom-control-input" id="color-5">
                         <label class="custom-control-label" for="color-5">Green</label>
@@ -100,10 +119,10 @@
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Lọc theo
                     loại bệnh</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+                <form class="filter-list">
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="size-all">
-                        <label class="custom-control-label" for="size-all">All Size</label>
+                        <label class="custom-control-label" for="size-all">Tất cả</label>
                         <span class="badge border font-weight-normal">1000</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
@@ -139,7 +158,7 @@
 
 
         <!-- Shop Product Start -->
-        <ngx-product-list class="col-lg-9 col-md-8"></ngx-product-list>
+        <ngx-product-list [searchContent]="searchContent" class="col-lg-9 col-md-8"></ngx-product-list>
         <!-- Shop Product End -->
     </div>
 </div>
