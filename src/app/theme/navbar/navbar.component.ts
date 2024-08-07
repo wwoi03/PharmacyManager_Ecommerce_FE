@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { LoadingService } from 'src/app/services/loading/loading.service';
+import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { SweetAlertService } from 'src/app/services/sweet-alert/sweet-alert.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ngx-navbar',
@@ -15,6 +17,7 @@ export class NavbarComponent {
   isSignIn: boolean = false;
   customerName: string | undefined;
   quantityCart: number = 0;
+  private subscription: Subscription | undefined;
 
   // constructor
   constructor(
@@ -22,7 +25,8 @@ export class NavbarComponent {
     private authService: AuthService,
     private sweetAlertService: SweetAlertService,
     private loadingService: LoadingService,
-    private cartService: CartService
+    private cartService: CartService,
+    private localStorageService: LocalStorageService
   ) {
 
   }
@@ -37,19 +41,29 @@ export class NavbarComponent {
     this.loadQuantityCart();
   }
 
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
   // Load quantity card
   loadQuantityCart() {
     this.cartService.getCart().subscribe((res) => {
       if (res.code === 200) {
         const quantity = res.obj?.length ?? 0;
-        localStorage.setItem('quantityCart', quantity.toString());
-        this.quantityCart = Number(localStorage.getItem('quantityCart'));
+        this.localStorageService.setCartQuantity(quantity);
+        this.quantityCart = this.localStorageService.getCartQuantity();
       }
     });
   }
 
   signIn() {
     this.router.navigate(['/ecommerce/account/sign-in']);
+  }
+
+  signUp() {
+    this.router.navigate(['/ecommerce/account/sign-up']);
   }
 
   logout() {
@@ -76,5 +90,9 @@ export class NavbarComponent {
 
   clickMyOrder() {
     this.router.navigate(['/ecommerce/order/order-index']);
+  }
+
+  details() {
+    this.router.navigate(['/ecommerce/product/product-index']);
   }
 }

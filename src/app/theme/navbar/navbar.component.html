@@ -17,7 +17,8 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <button *ngIf="!isSignIn" class="dropdown-item" type="button" (click)="signIn()">Đăng
                             nhập</button>
-                        <button *ngIf="!isSignIn" class="dropdown-item" type="button">Đăng ký</button>
+                        <button *ngIf="!isSignIn" class="dropdown-item" type="button" (click)="signUp()">Đăng
+                            ký</button>
                         <button *ngIf="isSignIn" class="dropdown-item" type="button" (click)="onClickMyAccount()">Tài
                             khoản</button>
                         <button *ngIf="isSignIn" class="dropdown-item" type="button" (click)="clickMyOrder()">Đơn
@@ -26,6 +27,8 @@
                             thích</button>
                         <button style="border-top: 1px solid #dad2d2;" *ngIf="isSignIn" class="dropdown-item"
                             type="button" (click)="logout()">Đăng xuất</button>
+                        <button style="border-top: 1px solid #dad2d2;" class="dropdown-item"
+                            type="button" (click)="details()">Chi tiết</button>
                     </div>
                 </div>
                 <!-- <div class="btn-group mx-2">
@@ -64,14 +67,15 @@
     <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
         <div class="col-lg-4">
             <a href="" class="text-decoration-none">
-                <span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
-                <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
+                <span class="h1 text-uppercase text-primary bg-dark px-2" style="margin-right: 5px;">DCT</span>
+                <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Pharmacy</span>
             </a>
         </div>
         <div class="col-lg-4 col-6 text-left">
             <form action="">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for products">
+                    <input type="text" class="form-control"
+                        placeholder="Tìm tên thuốc, bệnh lý, thực phẩm chức năng...">
                     <div class="input-group-append">
                         <span class="input-group-text bg-transparent text-primary">
                             <i class="fa fa-search"></i>
@@ -81,8 +85,8 @@
             </form>
         </div>
         <div class="col-lg-4 col-6 text-right">
-            <p class="m-0">Customer Service</p>
-            <h5 class="m-0">+012 345 6789</h5>
+            <p class="m-0">Đường dây nóng</p>
+            <h5 class="m-0">+84 909 900 009</h5>
         </div>
     </div>
 </div>
@@ -94,7 +98,7 @@
         <div class="col-lg-3 d-none d-lg-block">
             <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse"
                 href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Categories</h6>
+                <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Danh mục sản phẩm</h6>
                 <i class="fa fa-angle-down text-dark"></i>
             </a>
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
@@ -132,17 +136,31 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <a href="index.html" class="nav-item nav-link active">Trang chủ</a>
-                        <a href="shop.html" class="nav-item nav-link">Shop</a>
-                        <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Thực phẩm chức năng <i
                                     class="fa fa-angle-down mt-1"></i></a>
                             <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                 <a href="cart.html" class="dropdown-item">Shopping Cart</a>
                                 <a href="checkout.html" class="dropdown-item">Checkout</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Chăm sóc cá nhân <i
+                                    class="fa fa-angle-down mt-1"></i></a>
+                            <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                                <a href="checkout.html" class="dropdown-item">Checkout</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Thuốc <i
+                                    class="fa fa-angle-down mt-1"></i></a>
+                            <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                                <a href="checkout.html" class="dropdown-item">Checkout</a>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="nav-item nav-link">Hệ thống nhà thuốc</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                         <a class="btn px-0">

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { ResponseApi } from 'src/app/helpers/resposne-apis/response-api';
+import { CreateCartRequest } from 'src/app/models/requests/cart/create-cart-request';
 import { UpdateCartRequest } from 'src/app/models/requests/cart/update-cart-request';
 import { ItemCartResponse } from 'src/app/models/responses/cart/item-cart-response';
 
@@ -53,6 +54,21 @@ export class CartService {
 
     return this.http
       .delete<ResponseApi<string>>(this.apiUrl + "Delete", { params })
+      .pipe(
+        map((response: ResponseApi<string>) => {
+          if (response.isSuccessed) {
+            return response;
+          } else {
+            throw new Error('Login failed: ');
+          }
+        })
+      );
+  }
+
+  // Update Quantity
+  create(request: CreateCartRequest): Observable<ResponseApi<string>> {
+    return this.http
+      .post<ResponseApi<string>>(this.apiUrl + "Create", request)
       .pipe(
         map((response: ResponseApi<string>) => {
           if (response.isSuccessed) {

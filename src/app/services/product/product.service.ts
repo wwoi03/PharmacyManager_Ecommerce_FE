@@ -15,10 +15,40 @@ export class ProductService {
     private http: HttpClient,
   ) { }
 
-  // Sign In
+  // getSellingProductByMonth
   getSellingProductByMonth(): Observable<ResponseApi<ItemProductResponse[]>> {
     return this.http
       .get<ResponseApi<ItemProductResponse[]>>(this.apiUrl + "GetSellingProductByMonth")
+      .pipe(
+        map((response: ResponseApi<ItemProductResponse[]>) => {
+          if (response.isSuccessed) {
+            return response;
+          } else {
+            throw new Error('Login failed: ');
+          }
+        })
+      );
+  }
+
+  // GetNewProducts
+  getNewProducts(): Observable<ResponseApi<ItemProductResponse[]>> {
+    return this.http
+      .get<ResponseApi<ItemProductResponse[]>>(this.apiUrl + "GetNewProducts")
+      .pipe(
+        map((response: ResponseApi<ItemProductResponse[]>) => {
+          if (response.isSuccessed) {
+            return response;
+          } else {
+            throw new Error('Login failed: ');
+          }
+        })
+      );
+  }
+
+  // GetNewProducts
+  getSaleProducts(): Observable<ResponseApi<ItemProductResponse[]>> {
+    return this.http
+      .get<ResponseApi<ItemProductResponse[]>>(this.apiUrl + "GetSaleProducts")
       .pipe(
         map((response: ResponseApi<ItemProductResponse[]>) => {
           if (response.isSuccessed) {
