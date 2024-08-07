@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProductIndexComponent {
   // variables
-  productId: string | undefined;
+  productId?: string;
 
   // constructor
   constructor(
@@ -19,9 +19,12 @@ export class ProductIndexComponent {
   }
 
   // Init Data
-  ngOnInit() {
+  ngOnInit(): void {
+    console.log(this.route.params);
     this.route.params.subscribe((params) => {
       this.productId = params["id"];
+
+      console.log(params);
     });
   }
 }
