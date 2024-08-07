@@ -14,7 +14,7 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'home',
+        path: 'home-index',
         loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
       },
       {
@@ -33,10 +33,15 @@ const routes: Routes = [
         path: 'product',
         loadChildren: () => import('./product/product.module').then((m) => m.ProductModule),
       },
+      
       {
         path: 'order',
         loadChildren: () => import('./order/order.module').then((m) => m.OrderModule),
         canActivate: [AuthGuard],
+      },
+      {
+        path: 'search',
+        loadChildren: () => import('./search/search.module').then((m) => m.SearchModule),
       },
     ],
   },

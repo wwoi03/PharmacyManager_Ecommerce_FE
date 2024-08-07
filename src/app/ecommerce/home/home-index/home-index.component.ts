@@ -47,8 +47,7 @@ export class HomeIndexComponent {
 
   // Xử lý sự kiện
   handleChildOnClickDetails(item: ItemProductResponse) {
-    const productId: string = item.productId;
-    this.router.navigate(['/ecommerce/product/product-index', productId]);
+    this.router.navigate(['/ecommerce/product/product-index', item.productId]);
     // window.location.href = `/ecommerce/product/product-index/${productId}`;
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -6,9 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './product-index.component.html',
   styleUrls: ['./product-index.component.scss']
 })
-export class ProductIndexComponent {
+export class ProductIndexComponent implements OnInit {
   // variables
-  productId?: string;
+  productId!: string;
 
   // constructor
   constructor(
@@ -19,12 +19,11 @@ export class ProductIndexComponent {
   }
 
   // Init Data
-  ngOnInit(): void {
-    console.log(this.route.params);
-    this.route.params.subscribe((params) => {
-      this.productId = params["id"];
-
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.productId = params['id'];
       console.log(params);
+      console.log(this.productId);
     });
   }
 }

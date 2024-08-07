@@ -93,6 +93,6 @@ export class NavbarComponent {
   }
 
   details() {
-    this.router.navigate(['/ecommerce/product/product-index']);
+    this.router.navigate(['/ecommerce/search/search-index']);
   }
 }
