@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private cookieService: CookieService) {}
 
   setToken(token: string): void {
-    this.cookieService.set(this.TOKEN_NAME, token, 0, '/customer', undefined, true, 'Strict');
+    this.cookieService.set(this.TOKEN_NAME, token, 0, '/ecommerce', undefined, true, 'Strict');
   }
 
   getToken(): string {
@@ -20,11 +20,11 @@ export class AuthService {
   }
 
   deleteToken(): void {
-    this.cookieService.delete(this.TOKEN_NAME, '/customer');
+    this.cookieService.delete(this.TOKEN_NAME, '/ecommerce');
   }
 
   setRoles(roles: string[]): void {
-    this.cookieService.set(this.ROLES, JSON.stringify(roles), 0, '/customer', undefined, true, 'Strict');
+    this.cookieService.set(this.ROLES, JSON.stringify(roles), 0, '/ecommerce', undefined, true, 'Strict');
   }
 
   getRoles(): string[] {
@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   setName(name: string): void {
-    this.cookieService.set(this.NAME, name, 0, '/customer', undefined, true, 'Strict');
+    this.cookieService.set(this.NAME, name, 0, '/ecommerce', undefined, true, 'Strict');
   }
 
   getName(): string {
@@ -42,8 +42,8 @@ export class AuthService {
 
   logout(): void {
     localStorage.clear();
-    this.cookieService.delete(this.TOKEN_NAME, '/customer');
-    this.cookieService.delete(this.ROLES, '/customer');
-    this.cookieService.delete(this.NAME, '/customer');
+    this.cookieService.delete(this.TOKEN_NAME, '/ecommerce');
+    this.cookieService.delete(this.ROLES, '/ecommerce');
+    this.cookieService.delete(this.NAME, '/ecommerce');
   }
 }

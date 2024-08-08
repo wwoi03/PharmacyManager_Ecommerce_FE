@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ItemProductResponse } from '../../models/responses/product/item-product-response';
 import { ResponseApi } from '../../helpers/resposne-apis/response-api';
 import { map, Observable } from 'rxjs';
+import { DetailsProductResponse } from 'src/app/models/responses/product/details-product-response';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,23 @@ export class ProductService {
       .get<ResponseApi<ItemProductResponse[]>>(this.apiUrl + "GetSaleProducts")
       .pipe(
         map((response: ResponseApi<ItemProductResponse[]>) => {
+          if (response.isSuccessed) {
+            return response;
+          } else {
+            throw new Error('Login failed: ');
+          }
+        })
+      );
+  }
+
+  // GetNewProducts
+  getProductDetails(productId: string): Observable<ResponseApi<DetailsProductResponse>> {
+    const params = new HttpParams().set("productId", productId);
+    
+    return this.http
+      .get<ResponseApi<DetailsProductResponse>>(this.apiUrl + "GetProductDetails", { params })
+      .pipe(
+        map((response: ResponseApi<DetailsProductResponse>) => {
           if (response.isSuccessed) {
             return response;
           } else {
