@@ -86,8 +86,8 @@
                         <div *ngFor="let unit of detailsProductResponse.shipmentDetailsUnits; let index = index"
                             class="custom-control custom-radio custom-control-inline">
                             <input type="radio" (click)="onClickUnit(unit)" [checked]="unit.level === 1"
-                                class="custom-control-input" [id]="'size-' + index" name="size">
-                            <label class="custom-control-label" [for]="'size-' + index">{{ unit.unitName }}</label>
+                                class="pointer custom-control-input" [id]="'size-' + index" name="size">
+                            <label class="pointer custom-control-label" [for]="'size-' + index">{{ unit.unitName }}</label>
                         </div>
                     </form>
                 </div>
@@ -154,7 +154,7 @@
                             </button>
                         </div>
                     </div>
-                    <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Chọn mua</button>
+                    <button (click)="onClickBuy()" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Chọn mua</button>
                 </div>
                 <div class="d-flex pt-2">
                     <strong class="text-dark mr-2">Chia sẻ:</strong>

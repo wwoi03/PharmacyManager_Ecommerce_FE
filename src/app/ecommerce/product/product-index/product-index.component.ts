@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtilMoney } from 'src/app/helpers/utils/util-money';
+import { CreateCartRequest } from 'src/app/models/requests/cart/create-cart-request';
 import { DetailsProductResponse } from 'src/app/models/responses/product/details-product-response';
 import { ShipmentDetailsUnitResponse } from 'src/app/models/responses/shipment-details-unit/shipment-details-unit-response';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { FileService } from 'src/app/services/file/file.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
+import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import { SweetAlertService } from 'src/app/services/sweet-alert/sweet-alert.service';
 
 @Component({
   selector: 'ngx-product-index',
@@ -17,6 +22,7 @@ export class ProductIndexComponent implements OnInit {
   detailsProductResponse: DetailsProductResponse = new DetailsProductResponse();
   unitPrice: ShipmentDetailsUnitResponse | undefined;
   quantity: number = 1;
+  createCartRequest: CreateCartRequest = new CreateCartRequest();
 
   // constructor
   constructor(
@@ -25,6 +31,10 @@ export class ProductIndexComponent implements OnInit {
     private productService: ProductService,
     private fileService: FileService,
     private utilMoney: UtilMoney,
+    private cartService: CartService,
+    private sweetAlertService: SweetAlertService,
+    private loadingService: LoadingService,
+    private localStorageService: LocalStorageService,
   ) {
 
   }
@@ -75,5 +85,28 @@ export class ProductIndexComponent implements OnInit {
   // Xử lý khi nhấn nút tăng
   onClickIncrease() {
     this.quantity++;
+  }
+
+  // xử lý bấm mua
+  onClickBuy() {
+    this.loadingService.show();
+
+    this.createCartRequest.productId = this.detailsProductResponse.id;
+    this.createCartRequest.quantity = this.quantity;
+    this.createCartRequest.unitId = this.unitPrice?.unitId;
+    
+    this.cartService.create(this.createCartRequest).subscribe(
+      (res) => {
+        if (res.code === 200) {
+          setTimeout(() => {
+            var cartQuantity = this.localStorageService.getCartQuantity();
+            this.localStorageService.setCartQuantity(cartQuantity++);
+
+            this.loadingService.hide();
+            this.sweetAlertService.successNoButton("Thêm sản phẩm vào giỏ hàng thành công.");
+          }, 500);
+        }
+      }
+    )
   }
 }
