@@ -8,6 +8,7 @@ import { SellingProductComponent } from './selling-product/selling-product.compo
 import { FeaturedCategoryComponent } from './featured-category/featured-category.component';
 import { HomeIndexComponent } from './home-index/home-index.component';
 import { NewProductComponent } from './new-product/new-product.component';
+import { RecommendSimilarProductComponent } from './recommend-similar-product/recommend-similar-product.component';
 
 const routes: Routes = [
   {
@@ -31,4 +32,5 @@ export const routedComponents = [
   FeaturedCategoryComponent,
   HomeIndexComponent,
   NewProductComponent,
+  RecommendSimilarProductComponent,
 ];

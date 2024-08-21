@@ -87,7 +87,8 @@
                             class="custom-control custom-radio custom-control-inline">
                             <input type="radio" (click)="onClickUnit(unit)" [checked]="unit.level === 1"
                                 class="pointer custom-control-input" [id]="'size-' + index" name="size">
-                            <label class="pointer custom-control-label" [for]="'size-' + index">{{ unit.unitName }}</label>
+                            <label class="pointer custom-control-label" [for]="'size-' + index">{{ unit.unitName
+                                }}</label>
                         </div>
                     </form>
                 </div>
@@ -131,7 +132,7 @@
                 <!-- Mô tả ngắn -->
                 <div class="d-flex mb-3">
                     <strong class="text-dark mr-3" style="flex: 1">Mô tả ngắn:</strong>
-                    <span style="flex: 3">{{ detailsProductResponse.shortDescription }}</span>
+                    <span style="flex: 3; text-align: justify;">{{ detailsProductResponse.shortDescription }}</span>
                 </div>
 
                 <!-- Số đăng ký -->
@@ -147,14 +148,16 @@
                                 <i class="fa fa-minus"></i>
                             </button>
                         </div>
-                        <input type="number" class="form-control bg-secondary border-0 text-center" [(ngModel)]="quantity" name="quantity">
+                        <input type="number" class="form-control bg-secondary border-0 text-center"
+                            [(ngModel)]="quantity" name="quantity">
                         <div class="input-group-btn">
                             <button (click)="onClickIncrease()" class="btn btn-primary btn-plus">
                                 <i class="fa fa-plus"></i>
                             </button>
                         </div>
                     </div>
-                    <button (click)="onClickBuy()" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Chọn mua</button>
+                    <button (click)="onClickBuy()" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>
+                        Chọn mua</button>
                 </div>
                 <div class="d-flex pt-2">
                     <strong class="text-dark mr-2">Chia sẻ:</strong>
@@ -180,17 +183,24 @@
         <div class="col">
             <div class="bg-light p-30">
                 <div class="nav nav-tabs mb-4">
-                    <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Mô tả sản
+                    <a *ngIf="detailsProductResponse.description?.trim()?.length != 0"
+                        class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Mô tả sản
                         phẩm</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Thành phần</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Công dụng</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-4">Cách dùng</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-5">Tác dụng phụ</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-6">Lưu ý</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-7">Bảo quản</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-8">Đánh giá sản phẩm
+                    <a 
+                        class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Thành phần</a>
+                    <a *ngIf="detailsProductResponse.uses?.trim()?.length != 0"
+                        class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Công dụng</a>
+                    <a *ngIf="detailsProductResponse.howToUse?.trim()?.length != 0"
+                        class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-4">Cách dùng</a>
+                    <a *ngIf="detailsProductResponse.sideEffects?.trim()?.length != 0"
+                        class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-5">Tác dụng phụ</a>
+                    <a *ngIf="detailsProductResponse.warning?.trim()?.length != 0"
+                        class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-6">Lưu ý</a>
+                    <a *ngIf="detailsProductResponse.preserve?.trim()?.length != 0"
+                        class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-7">Bảo quản</a>
+                    <!-- <a *ngIf="detailsProductResponse.description?.trim()?.length != 0" class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-8">Đánh giá sản phẩm
                         (50)</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-9">Hỏi đáp (21)</a>
+                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-9">Hỏi đáp (21)</a> -->
                 </div>
                 <div class="tab-content">
                     <!-- Mô tả -->
