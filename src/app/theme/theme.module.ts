@@ -4,6 +4,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AccountMenuComponent } from './account-menu/account-menu.component';
+import { FormsModule } from '@angular/forms';
 
 const COMPONENTS = [
   HeaderComponent,
@@ -17,7 +18,8 @@ const COMPONENTS = [
     ...COMPONENTS,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
   ],
   exports: [
     ...COMPONENTS

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-product',
+  selector: 'ngx-product',
   templateUrl: './product.component.html',
-  styleUrl: './product.component.scss'
+  styleUrls: ['./product.component.scss']
 })
 export class ProductComponent {
 

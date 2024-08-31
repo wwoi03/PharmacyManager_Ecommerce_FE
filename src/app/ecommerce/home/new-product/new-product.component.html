@@ -1,0 +1,56 @@
+<!-- Products Start -->
+<div class="container-fluid pt-5 pb-3" *ngIf="itemProductResponses.length > 0">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Sản phẩm mới</span></h2>
+    <div class="row px-xl-5">
+        <div *ngFor="let item of itemProductResponses; let itemIndex = index" class="col-lg-2 col-md-4 col-sm-6 pb-1">
+            <div class="product-item bg-light mb-4">
+                <div class="custom-promotion" *ngIf="item.discount">
+                    {{ item.discount <= 100 ? item.discount + "%" : utilMoney.formatCurrency(item.discount) }}
+                </div>
+                <div class="product-img position-relative overflow-hidden custom-product-info">
+                    <img class="img-fluid w-100" style="height: 200px;" [src]="fileService.loadImage(item.productImage)"
+                        alt="">
+                    <div class="product-action">
+                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                    </div>
+                </div>
+                <div class="text-center py-4 custom-product-info">
+                    <a (click)="triggerParentOnClickDetails(item)" class="h6 text-decoration-none  custom-product-name">{{ item.productName }}</a>
+
+                    <div class="bg-secondary bg-light">
+                        <div class="d-flex nav nav-tabs bg-light mb-2">
+                            <a class="col-lg-4 nav-item nav-link text-dark active" data-toggle="tab"
+                                style="padding: 3px 8px;"
+                                *ngFor="let sduItem of item.shipmentDetailsUnits; let index = index"
+                                (click)="onUnitChange(item, sduItem.unitId)"
+                                [href]="'#tab-pane-new-product-' + itemIndex + '-' + index" [class.active]="index === 0">{{
+                                sduItem.unitName }}</a>
+
+                        </div>
+                        <div class="tab-content bg-light">
+                            <div *ngFor="let sduItem of item.shipmentDetailsUnits; let index = index"
+                                class="tab-pane fade show" [id]="'tab-pane-new-product-' + itemIndex + '-' + index"
+                                [class.active]="index === 0">
+                                <div class="d-flex align-items-center mt-2">
+                                    <h6>{{ utilMoney.formatCurrency(sduItem.salePrice) }}</h6>
+                                    <h6>/{{ sduItem.unitName }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: left;">
+                        {{ item.specifications }}
+                    </div>
+
+                    <button (click)="triggerParentOnClickBuy(item)" class="custom-btn btn btn-primary"
+                        style="margin-top: 10px; padding: 6px 0; width: 100%;">Chọn mua</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Products End -->

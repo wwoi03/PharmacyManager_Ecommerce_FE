@@ -1,0 +1,24 @@
+.filter-list {
+  overflow: auto;
+  height: 224px;
+}
+
+.filter-list::-webkit-scrollbar-thumb {
+  background-color: #888; /* Màu sắc của thanh cuộn */
+  border-radius: 10px; /* Bo tròn thanh cuộn */
+}
+
+.filter-list::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Màu sắc của thanh cuộn khi hover */
+}
+
+/* Tùy chỉnh thanh cuộn cho Firefox */
+.filter-list {
+  scrollbar-width: thin; /* Chiều rộng của thanh cuộn */
+  scrollbar-color: #888 #f1f1f1; /* Màu sắc của thanh cuộn và nền của thanh cuộn */
+}
+
+/* Ẩn thanh cuộn cho Internet Explorer và Edge */
+.filter-list {
+  -ms-overflow-style: none; /* IE 10+ */
+}

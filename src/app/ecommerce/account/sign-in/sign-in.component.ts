@@ -38,21 +38,14 @@ export class SignInComponent {
         setTimeout(() => {
           window.location.href = '/ecommerce/home';
         }, 3000);
-      } else if (res.code === 401) {
+      } else if (res.code >= 400 && res.code < 500) {
         setTimeout(() => {
           this.loadingService.hide();
           this.sweetAlertService.error(
-            res.validationNotify?.message ?? 'Lỗi gì không biết luôn'
+            res.message ?? 'Lỗi gì không biết luôn'
           );
         }, 1000);
-      } else if (res.code === 403) {
-        setTimeout(() => {
-          this.loadingService.hide();
-          this.sweetAlertService.error(
-            res.validationNotify?.message ?? 'Lỗi gì không biết luôn'
-          );
-        }, 1000);
-      }
+      } 
     });
   }
 }

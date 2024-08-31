@@ -1,10 +1,13 @@
 <!-- Products Start -->
-<div class="container-fluid pt-5 pb-3">
+<div class="container-fluid pt-5 pb-3" *ngIf="itemProductResponses.length > 0">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Sản phẩm bán
-            chạy theo tháng</span></h2>
+            chạy</span></h2>
     <div class="row px-xl-5">
-        <div *ngFor="let item of itemProductResponses" class="col-lg-2 col-md-4 col-sm-6 pb-1">
+        <div *ngFor="let item of itemProductResponses; let itemIndex = index" class="col-lg-2 col-md-4 col-sm-6 pb-1">
             <div class="product-item bg-light mb-4">
+                <div class="custom-promotion" *ngIf="item.discount">
+                    {{ item.discount <= 100 ? item.discount + "%" : utilMoney.formatCurrency(item.discount) }}
+                </div>
                 <div class="product-img position-relative overflow-hidden custom-product-info">
                     <img class="img-fluid w-100" style="height: 200px;" [src]="fileService.loadImage(item.productImage)"
                         alt="">
@@ -16,44 +19,36 @@
                     </div>
                 </div>
                 <div class="text-center py-4 custom-product-info">
-                    <a class="h6 text-decoration-none  custom-product-name" href="">{{ item.productName }}</a>
+                    <a (click)="triggerParentOnClickDetails(item)" class="h6 text-decoration-none  custom-product-name">{{ item.productName }}</a>
 
                     <div class="bg-secondary bg-light">
                         <div class="d-flex nav nav-tabs bg-light mb-2">
                             <a class="col-lg-4 nav-item nav-link text-dark active" data-toggle="tab"
                                 style="padding: 3px 8px;"
                                 *ngFor="let sduItem of item.shipmentDetailsUnits; let index = index"
-                                [href]="'#tab-pane-'+ item.productId + index" [class.active]="index === 0">{{ sduItem.unitName }}</a>
+                                (click)="onUnitChange(item, sduItem.unitId)"
+                                [href]="'#tab-pane-selling-product'+ itemIndex + '-' + index" [class.active]="index === 0">{{
+                                sduItem.unitName }}</a>
 
                         </div>
                         <div class="tab-content bg-light">
                             <div *ngFor="let sduItem of item.shipmentDetailsUnits; let index = index"
-                                class="tab-pane fade show" [id]="'tab-pane-' + item.productId + index" [class.active]="index === 0">
+                                class="tab-pane fade show" [id]="'tab-pane-selling-product'+ itemIndex + '-' + index"
+                                [class.active]="index === 0">
                                 <div class="d-flex align-items-center mt-2">
                                     <h6>{{ utilMoney.formatCurrency(sduItem.salePrice) }}</h6>
-                                    <h6>/ {{ sduItem.unitName }}</h6>
-                                    <!-- <h6 class="text-muted ml-2"><del>$123.00</del></h6> -->
+                                    <h6>/{{ sduItem.unitName }}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-
-
                     <div style="text-align: left;">
                         {{ item.specifications }}
                     </div>
-                    
-                    <button (click)="onClickBuy(item)" class="btn btn-primary" style="margin-top: 10px; padding: 6px 0; width: 100%;">Chọn mua</button>
 
-                    <!-- <div class="d-flex align-items-center justify-content-center mb-1">
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small>(99)</small>
-                    </div> -->
+                    <button (click)="triggerParentOnClickBuy(item)" class="custom-btn btn btn-primary"
+                        style="margin-top: 10px; padding: 6px 0; width: 100%;">Chọn mua</button>
                 </div>
             </div>
         </div>

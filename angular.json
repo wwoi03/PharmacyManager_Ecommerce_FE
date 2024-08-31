@@ -67,7 +67,11 @@
               "browserTarget": "PharmacyManager_Ecommerce_FE:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "browserTarget": "PharmacyManager_Ecommerce_FE:build",
+            "port": 4201
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
