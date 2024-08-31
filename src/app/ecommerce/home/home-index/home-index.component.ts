@@ -7,6 +7,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 import { FileService } from 'src/app/services/file/file.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import { SweetAlertService } from 'src/app/services/sweet-alert/sweet-alert.service';
 
 @Component({
   selector: 'ngx-home-index',
@@ -21,7 +22,8 @@ export class HomeIndexComponent {
     public utilMoney: UtilMoney,
     private cartService: CartService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private sweetAlertService: SweetAlertService,
   ) {
 
   }
@@ -41,6 +43,7 @@ export class HomeIndexComponent {
       if (res.code === 200) {
         var cartQuantity = this.localStorageService.getCartQuantity();
         this.localStorageService.setCartQuantity(cartQuantity);
+        this.sweetAlertService.success("Thêm sản phẩm vào giỏ hàng thành công")
       }
     });
   }

@@ -141,9 +141,14 @@ export class CheckoutIndexComponent {
             this.loadingService.hide();
 
             if (res.obj != null) {
-              console.log(res.obj);
               window.location.href = res.obj;
             }
+          }, 1000);
+        } else if (res.code >= 400 && res.code < 500) {
+          setTimeout(() => {
+            this.loadingService.hide();
+
+            this.sweetAlertService.warning(res.validationNotify?.message ?? "Lỗi hệ thống, vui lòng thử lại sau.");
           }, 1000);
         }
       });
